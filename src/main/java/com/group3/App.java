@@ -1,9 +1,9 @@
-package com.napier.sem;
+package com.group3;
 
 public class App
 {
     public static void main(String[] args)
     {
-        System.out.println("Boo yah!");
+        System.out.println("Group3");
     }
 }
