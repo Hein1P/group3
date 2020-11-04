@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.org/Hein1P/group3.svg?branch=master)](https://travis-ci.org/Hein1P/group3)
-[![Build Status](https://travis-ci.org/Hein1P/group3.svg?branch=develop)](https://travis-ci.org/Hein1P/group3)
+[![Build Status](https://travis-ci.com/Hein1P/group3.svg?token=eW7Dp2N5wrCBtvVpNxus&branch=master)](https://travis-ci.com/Hein1P/group3)
+[![Build Status](https://travis-ci.com/Hein1P/group3.svg?token=eW7Dp2N5wrCBtvVpNxus&branch=develop)](https://travis-ci.com/Hein1P/group3)
+[![Build Status](https://travis-ci.com/Hein1P/group3.svg?token=eW7Dp2N5wrCBtvVpNxus&branch=release)](https://travis-ci.com/Hein1P/group3)
 [![LICENSE](https://img.shields.io/github/license/Hein1P/group3.svg?style=flat-square)](https://github.com/Hein1P/group3/blob/master/LICENSE)
 [![Releases](https://img.shields.io/github/release/Hein1P/group3/all.svg?style=flat-square)](https://github.com/Hein1P/group3/releases)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
