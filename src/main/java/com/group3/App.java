@@ -507,6 +507,54 @@ public class App {
         }
         System.out.println("=======================================================================================================================================");
     }
+    /**
+     * * Get the cities name by population in descenting order in Myanmar.
+     */
+    public ArrayList<City> getcitypopuinMyanmar() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT *"
+                            + "FROM city"
+                            + "WHERE city.countrycode = 'MMR' "
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return countries in middle east if valid.
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next()) {
+                City city = new City();
+                city.ID = rset.getInt("ID");
+                city.Name = rset.getString("Name");
+                city.Population = rset.getInt("Population");
+                city.CountryCode = rset.getString("CountryCode");
+                city.District = rset.getString("District");
+                cities.add(city);
+            }
+            return cities;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details in Myanmar");
+            return null;
+        }
+    }
+
+    public void displaycitypopuinMyanmar(ArrayList<City> cities) {
+        //Title of table
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in a country organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "CountryCode", "District"));
+        //Loop all the City get from cities list
+        for (City city : cities) {
+            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.CountryCode, city.District);
+            System.out.println(city_string);
+        }
+        System.out.println("=======================================================================================================================================");
+    }
     public static void main(String[] args) {
         // Create new Application
         App a = new App();
@@ -559,6 +607,10 @@ public class App {
         //Display cities
         a.displaycitypopuinmiddleeast(citypopuinmiddleeast);
 
+        // Get Country list in Myanmar
+        ArrayList<City> citypopuinMyanmar = a.getcitypopuinMyanmar();
+        //Display cities
+        a.displaycitypopuinMyanmar(citypopuinMyanmar);
 
         // Disconnect from database
 
