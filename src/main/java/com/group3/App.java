@@ -94,7 +94,9 @@ public class App {
 
     public void displaycounpopuinworld(ArrayList<Country> countries) {
         //Title of table
-        System.out.println("All Countries in the world by population.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the countries in the world organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
@@ -142,7 +144,9 @@ public class App {
 
     public void displaycounpopuinasia(ArrayList<Country> countries) {
         //Title of table
-        System.out.println("All Countries in the Asia by population.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the countries in a continent organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
@@ -189,7 +193,9 @@ public class App {
 
     public void displaycounpopuincaribbean(ArrayList<Country> countries) {
         //Title of table
-        System.out.println("All Countries in the Caribbean by population.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the countries in a region organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
@@ -237,7 +243,9 @@ public class App {
 
     public void displaytopcounpopuinworld(ArrayList<Country> countries) {
         //Title of table
-        System.out.println("Top Countries in the world by population by user input.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println("The top N populated countries in the world where N is provided by the user.");
+        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
@@ -286,7 +294,9 @@ public class App {
 
     public void displaytopcounpopuinasia(ArrayList<Country> countries) {
         //Title of table
-        System.out.println("Top Countries in Asia by population by user input.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println("The top N populated countries in a continent where N is provided by the user.");
+        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
@@ -333,7 +343,9 @@ public class App {
 
     public void displaycitypopuinworld(ArrayList<City> cities) {
         //Title of table
-        System.out.println("Cities in the world by population.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the world organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "CountryCode", "District"));
         //Loop all the City get from cities list
         for (City city : cities) {
@@ -381,7 +393,9 @@ public class App {
 
     public void displaycitypopuinasia(ArrayList<City> cities) {
         //Title of table
-        System.out.println("Cities in Asia by population.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in a continent organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "Country Name", "District"));
         //Loop all the City get from cities list
         for (City city : cities) {
@@ -392,52 +406,6 @@ public class App {
     }
 
 
-    /**
-     * * Get the top cities name by population in descenting order in asia.
-     */
-    public ArrayList<City> gettopcitypopuinasia() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT *"
-                            + "FROM city, country "
-                            + "WHERE city.Countrycode = country.Code AND country.Continent = 'Asia' "
-                    + "ORDER BY city.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return countries in asia if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                City city = new City();
-                city.ID = rset.getInt("ID");
-                city.Name = rset.getString("Name");
-                city.Population = rset.getInt("Population");
-                city.CountryCode = rset.getString("CountryCode");
-                city.District = rset.getString("District");
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in asia");
-            return null;
-        }
-    }
-
-    public void displaytopcitypopuinasia(ArrayList<City> cities) {
-        //Title of table
-        System.out.println("Cities in the asia by population.");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "CountryCode", "District"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.CountryCode, city.District);
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
 
     /**
      * * Get the cities name by population in descenting order in middle east.
@@ -476,7 +444,9 @@ public class App {
 
     public void displaycitypopuinmiddleeast(ArrayList<City> cities) {
         //Title of table
-        System.out.println("Cities in the middle east by population.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in a region organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "CountryCode", "District"));
         //Loop all the City get from cities list
         for (City city : cities) {
@@ -533,10 +503,6 @@ public class App {
         //Display cities
         a.displaycitypopuinmiddleeast(citypopuinmiddleeast);
 
-        //Get Top City list in Asia
-        ArrayList<City> topcitypopuinasia = a.gettopcitypopuinasia();
-        //Display Cities
-        a.displaytopcitypopuinasia(topcitypopuinasia);
 
         // Disconnect from database
 
