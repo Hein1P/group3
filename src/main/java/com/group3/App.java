@@ -495,19 +495,19 @@ public class App {
         a.connect();
 
         // Get Country list in the world
-        //ArrayList<Country> countries = a.getcountrypopuinworld();
+        ArrayList<Country> countries = a.getcountrypopuinworld();
         // Display countries
-        //a.displaycounpopuinworld(countries);
+        a.displaycounpopuinworld(countries);
 
         // Get Country list in asia
-        //ArrayList<Country> asiacountries = a.getcountrypopuinasia();
+        ArrayList<Country> asiacountries = a.getcountrypopuinasia();
         // Display countries
-        //a.displaycounpopuinasia(asiacountries);
+        a.displaycounpopuinasia(asiacountries);
 
         // Get Country list in caribbeanm
-        //ArrayList<Country> caribbeancountries = a.getcountrypopuincaribbean();
+        ArrayList<Country> caribbeancountries = a.getcountrypopuincaribbean();
         // Display countries
-        //a.displaycounpopuincaribbean(caribbeancountries);
+        a.displaycounpopuincaribbean(caribbeancountries);
 
         // Get Top Country list in world by user input
         //ArrayList<Country> topcountriesinworld = a.gettopcountrypopuinworld(10);
