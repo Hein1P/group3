@@ -23,7 +23,7 @@ public class App {
 
         int retries = 10;
         for (int i = 0; i < retries; ++i) {
-            System.out.println("Connecting to database...htaaa");
+            System.out.println("Connecting to database...Group-3");
             try {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
@@ -97,10 +97,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("All the countries in the world organised by largest population to smallest.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -147,10 +147,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("All the countries in a continent organised by largest population to smallest.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -196,10 +196,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("All the countries in a region organised by largest population to smallest.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -246,10 +246,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("The top N populated countries in the world where N is provided by the user.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -297,10 +297,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("The top N populated countries in a continent where N is provided by the user.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -349,10 +349,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("The top N populated countries in a region where N is provided by the user.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -369,7 +369,8 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT *"
-                            + "FROM city "
+                            + "FROM city, country "
+                            + "WHERE city.CountryCode = country.Code and country.Population>=0 "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -377,12 +378,15 @@ public class App {
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next()) {
                 City city = new City();
-                city.ID = rset.getInt("ID");
-                city.Name = rset.getString("Name");
-                city.Population = rset.getInt("Population");
-                city.CountryCode = rset.getString("CountryCode");
-                city.District = rset.getString("District");
+                city.ID = rset.getInt("city.ID");
+                city.Name = rset.getString("city.Name");
+                city.Population = rset.getInt("city.Population");
+                city.District = rset.getString("city.District");
+                Country coun = new Country();
+                coun.Name = rset.getString("country.Name");
+                city.CountryDetail = coun;
                 cities.add(city);
+
             }
             return cities;
 
@@ -398,10 +402,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in the world organised by largest population to smallest.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "CountryCode", "District"));
+        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country"));
         //Loop all the City get from cities list
         for (City city : cities) {
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.CountryCode, city.District);
+            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.District, city.CountryDetail.Name);
             System.out.println(city_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -430,8 +434,10 @@ public class App {
                 city.ID = rset.getInt("city.ID");
                 city.Name = rset.getString("city.Name");
                 city.Population = rset.getInt("city.Population");
-
                 city.District = rset.getString("city.District");
+                Country coun = new Country();
+                coun.Name = rset.getString("country.Name");
+                city.CountryDetail = coun;
                 cities.add(city);
             }
             return cities;
@@ -448,10 +454,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in a continent organised by largest population to smallest.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s ", "ID", "City Name", "Population", "District"));
+        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country"));
         //Loop all the City get from cities list
         for (City city : cities) {
-            String city_string = String.format("%-10s %-45s %-20s %-20s ", city.ID, city.Name, city.Population, city.District);
+            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.District, city.CountryDetail.Name);
             System.out.println(city_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -478,11 +484,13 @@ public class App {
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next()) {
                 City city = new City();
-                city.ID = rset.getInt("ID");
-                city.Name = rset.getString("Name");
-                city.Population = rset.getInt("Population");
-                city.CountryCode = rset.getString("CountryCode");
-                city.District = rset.getString("District");
+                city.ID = rset.getInt("city.ID");
+                city.Name = rset.getString("city.Name");
+                city.Population = rset.getInt("city.Population");
+                city.District = rset.getString("city.District");
+                Country coun = new Country();
+                coun.Name = rset.getString("country.Name");
+                city.CountryDetail = coun;
                 cities.add(city);
             }
             return cities;
@@ -499,10 +507,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in a region organised by largest population to smallest.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "CountryCode", "District"));
+        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country"));
         //Loop all the City get from cities list
         for (City city : cities) {
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.CountryCode, city.District);
+            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.District, city.CountryDetail.Name);
             System.out.println(city_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -517,8 +525,8 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT *"
-                            + "FROM city"
-                            + "WHERE city.countrycode = 'MMR' "
+                            + "FROM city, country "
+                            + "WHERE city.countrycode = country.Code AND country.Code = 'MMR' "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -526,11 +534,13 @@ public class App {
             ArrayList<City> cities = new ArrayList<City>();
             while (rset.next()) {
                 City city = new City();
-                city.ID = rset.getInt("ID");
-                city.Name = rset.getString("Name");
-                city.Population = rset.getInt("Population");
-                city.CountryCode = rset.getString("CountryCode");
-                city.District = rset.getString("District");
+                city.ID = rset.getInt("city.ID");
+                city.Name = rset.getString("city.Name");
+                city.Population = rset.getInt("city.Population");
+                city.District = rset.getString("city.District");
+                Country coun = new Country();
+                coun.Name = rset.getString("country.Name");
+                city.CountryDetail = coun;
                 cities.add(city);
             }
             return cities;
@@ -547,10 +557,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in a country organised by largest population to smallest.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "CountryCode", "District"));
+        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country"));
         //Loop all the City get from cities list
         for (City city : cities) {
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.CountryCode, city.District);
+            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.District, city.CountryDetail.Name);
             System.out.println(city_string);
         }
         System.out.println("=======================================================================================================================================");
