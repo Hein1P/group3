@@ -308,6 +308,58 @@ public class App {
 
 
     /**
+     * * Get the top country name by population in descenting order in the region provided by user.
+     */
+    public ArrayList<Country> gettopcountriespopuinsoutherneurope(int n) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, country.Name, Population, Continent, Region, Capital "
+                            + "FROM country "
+                            + "WHERE country.Region = 'Southern Europe'"
+                            + "ORDER BY country.Population DESC lIMIT " + n ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return all countries if valid.
+
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next()) {
+                Country coun = new Country();
+                coun.Code = rset.getString("Code");
+                coun.Name = rset.getString("country.Name");
+                coun.Population = rset.getInt("population");
+                coun.Continent = rset.getString("continent");
+                coun.Region = rset.getString("Region");
+                coun.Capital = rset.getString("Capital");
+                countries.add(coun);
+            }
+            return countries;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    public void displaytopcounpopuinsoutherneurope(ArrayList<Country> countries) {
+        //Title of table
+        System.out.println("=======================================================================================================================================");
+        System.out.println("The top N populated countries in a region where N is provided by the user.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
+        //Loop all the country get from countries list
+        for (Country coun : countries) {
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
+            System.out.println(coun_string);
+        }
+        System.out.println("=======================================================================================================================================");
+    }
+
+
+    /**
      * * Get the cities name by population in descenting order in world.
      */
     public ArrayList<City> getcitypopuinworld() {
@@ -378,7 +430,7 @@ public class App {
                 city.ID = rset.getInt("city.ID");
                 city.Name = rset.getString("city.Name");
                 city.Population = rset.getInt("city.Population");
-                city.CountryName = rset.getString("country.Name");
+
                 city.District = rset.getString("city.District");
                 cities.add(city);
             }
@@ -396,10 +448,10 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in a continent organised by largest population to smallest.");
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "Country Name", "District"));
+        System.out.println(String.format("%-10s %-45s %-20s %-20s ", "ID", "City Name", "Population", "District"));
         //Loop all the City get from cities list
         for (City city : cities) {
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.CountryName, city.District);
+            String city_string = String.format("%-10s %-45s %-20s %-20s ", city.ID, city.Name, city.Population, city.District);
             System.out.println(city_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -482,11 +534,15 @@ public class App {
         // Display countries
         a.displaytopcounpopuinworld(topcountriesinworld);
 
-        //Get Country List in Aisa by user input
-        ArrayList<Country> topcountriesinasia = a.gettopcountriespopuinasia(20);
+        //Get Top Country List in Asia by user input
+        ArrayList<Country> topcountriesinasia = a.gettopcountriespopuinasia(10);
         //Display countries
         a.displaytopcounpopuinasia(topcountriesinasia);
 
+        //Get Top Country List in Region by user input
+        ArrayList<Country> topcountriesinsoutherneurope = a.gettopcountriespopuinsoutherneurope(10);
+        //Display countries
+        a.displaytopcounpopuinsoutherneurope(topcountriesinsoutherneurope);
 
         // Get Country list in the world
         ArrayList<City> citypopuinworld = a.getcitypopuinworld();

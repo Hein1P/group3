@@ -24,5 +24,5 @@ public class City {
     /**
      * City's Country
      */
-    public String CountryName;
+    public Country CountryDetail;
 }
