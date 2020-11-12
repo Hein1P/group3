@@ -65,7 +65,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, country.Name, Population, Continent, Region "
+                    "SELECT Code, country.Name, Population, Continent, Region, Capital "
                             + "FROM country "
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
@@ -80,6 +80,7 @@ public class App {
                 coun.Population = rset.getInt("population");
                 coun.Continent = rset.getString("continent");
                 coun.Region = rset.getString("Region");
+                coun.Capital = rset.getString("Capital");
                 countries.add(coun);
             }
             return countries;
@@ -94,10 +95,10 @@ public class App {
     public void displaycounpopuinworld(ArrayList<Country> countries) {
         //Title of table
         System.out.println("All Countries in the world by population.");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region"));
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region);
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -112,7 +113,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, country.Name, Population, Continent, Region "
+                    "SELECT Code, country.Name, Population, Continent, Region, Capital "
                             + "FROM country "
                             + "WHERE Continent = 'Asia'"
                             + "ORDER BY country.Population DESC";
@@ -127,6 +128,7 @@ public class App {
                 coun.Population = rset.getInt("population");
                 coun.Continent = rset.getString("continent");
                 coun.Region = rset.getString("Region");
+                coun.Capital = rset.getString("Capital");
                 countries.add(coun);
             }
             return countries;
@@ -141,10 +143,10 @@ public class App {
     public void displaycounpopuinasia(ArrayList<Country> countries) {
         //Title of table
         System.out.println("All Countries in the Asia by population.");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region"));
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region);
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -158,7 +160,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, country.Name, Population, Continent, Region "
+                    "SELECT Code, country.Name, Population, Continent, Region, Capital "
                             + "FROM country "
                             + "WHERE Region = 'Caribbean'"
                             + "ORDER BY country.Population DESC";
@@ -173,6 +175,7 @@ public class App {
                 coun.Population = rset.getInt("population");
                 coun.Continent = rset.getString("continent");
                 coun.Region = rset.getString("Region");
+                coun.Capital = rset.getString("Capital");
                 countries.add(coun);
             }
             return countries;
@@ -187,10 +190,10 @@ public class App {
     public void displaycounpopuincaribbean(ArrayList<Country> countries) {
         //Title of table
         System.out.println("All Countries in the Caribbean by population.");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region"));
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region);
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -205,7 +208,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, country.Name, Population, Continent, Region "
+                    "SELECT Code, country.Name, Population, Continent, Region, Capital "
                             + "FROM country "
                             + "ORDER BY country.Population DESC lIMIT " + n ;
             // Execute SQL statement
@@ -220,6 +223,7 @@ public class App {
                 coun.Population = rset.getInt("population");
                 coun.Continent = rset.getString("continent");
                 coun.Region = rset.getString("Region");
+                coun.Capital = rset.getString("Capital");
                 countries.add(coun);
             }
             return countries;
@@ -233,15 +237,65 @@ public class App {
 
     public void displaytopcounpopuinworld(ArrayList<Country> countries) {
         //Title of table
-        System.out.println("Top Countries in the world by population.");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region"));
+        System.out.println("Top Countries in the world by population by user input.");
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region);
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
     }
+
+    /**
+     * * Get the top country name by population in descenting order in the asia provided by user.
+     */
+    public ArrayList<Country> gettopcountriespopuinasia(int n) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, country.Name, Population, Continent, Region, Capital "
+                            + "FROM country "
+                            + "WHERE country.Continent = 'Asia'"
+                            + "ORDER BY country.Population DESC lIMIT " + n ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return all countries if valid.
+
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next()) {
+                Country coun = new Country();
+                coun.Code = rset.getString("Code");
+                coun.Name = rset.getString("country.Name");
+                coun.Population = rset.getInt("population");
+                coun.Continent = rset.getString("continent");
+                coun.Region = rset.getString("Region");
+                coun.Capital = rset.getString("Capital");
+                countries.add(coun);
+            }
+            return countries;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    public void displaytopcounpopuinasia(ArrayList<Country> countries) {
+        //Title of table
+        System.out.println("Top Countries in Asia by population by user input.");
+        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
+        //Loop all the country get from countries list
+        for (Country coun : countries) {
+            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s", coun.Code, coun.Name, coun.Population, coun.Continent, coun.Region, coun.Capital);
+            System.out.println(coun_string);
+        }
+        System.out.println("=======================================================================================================================================");
+    }
+
 
     /**
      * * Get the cities name by population in descenting order in world.
@@ -291,9 +345,57 @@ public class App {
 
 
     /**
-     * * Get the cities name by population in descenting order in asia.
+     * * Get the cities name by population in descenting order in a Asia.
      */
-    public ArrayList<City> getcitypopuinasia() {
+    public ArrayList<City> getcitypopuinasia(int conti) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT *"
+                            + "FROM city, country "
+                            + "WHERE city.CountryCode = country.Code AND country.Continent = 'Asia'"
+                            + "ORDER BY city.Population DESC LIMIT " + conti;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return countries in world if valid.
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next()) {
+                City city = new City();
+                city.ID = rset.getInt("city.ID");
+                city.Name = rset.getString("city.Name");
+                city.Population = rset.getInt("city.Population");
+                city.CountryName = rset.getString("country.Name");
+                city.District = rset.getString("city.District");
+                cities.add(city);
+            }
+            return cities;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details in Asia");
+            return null;
+        }
+    }
+
+    public void displaycitypopuinasia(ArrayList<City> cities) {
+        //Title of table
+        System.out.println("Cities in Asia by population.");
+        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "Country Name", "District"));
+        //Loop all the City get from cities list
+        for (City city : cities) {
+            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.ID, city.Name, city.Population, city.CountryName, city.District);
+            System.out.println(city_string);
+        }
+        System.out.println("=======================================================================================================================================");
+    }
+
+
+    /**
+     * * Get the top cities name by population in descenting order in asia.
+     */
+    public ArrayList<City> gettopcitypopuinasia() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -325,7 +427,7 @@ public class App {
         }
     }
 
-    public void displaycitypopuinasia(ArrayList<City> cities) {
+    public void displaytopcitypopuinasia(ArrayList<City> cities) {
         //Title of table
         System.out.println("Cities in the asia by population.");
         System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "CountryCode", "District"));
@@ -391,24 +493,30 @@ public class App {
         a.connect();
 
         // Get Country list in the world
-        //ArrayList<Country> countries = a.getcountrypopuinworld();
+        ArrayList<Country> countries = a.getcountrypopuinworld();
         // Display countries
-        //a.displaycounpopuinworld(countries);
+        a.displaycounpopuinworld(countries);
 
         // Get Country list in asia
-        //ArrayList<Country> asiacountries = a.getcountrypopuinasia();
+        ArrayList<Country> asiacountries = a.getcountrypopuinasia();
         // Display countries
-        //a.displaycounpopuinasia(asiacountries);
+        a.displaycounpopuinasia(asiacountries);
 
         // Get Country list in caribbeanm
-        //ArrayList<Country> caribbeancountries = a.getcountrypopuincaribbean();
+        ArrayList<Country> caribbeancountries = a.getcountrypopuincaribbean();
         // Display countries
-        //a.displaycounpopuincaribbean(caribbeancountries);
+        a.displaycounpopuincaribbean(caribbeancountries);
 
-        // Get Top Country list in world
-        //ArrayList<Country> topcountriesinworld = a.gettopcountrypopuinworld(10);
+        // Get Top Country list in world by user input
+        ArrayList<Country> topcountriesinworld = a.gettopcountrypopuinworld(10);
         // Display countries
-        //a.displaytopcounpopuinworld(topcountriesinworld);
+        a.displaytopcounpopuinworld(topcountriesinworld);
+
+        //Get Country List in Aisa by user input
+        ArrayList<Country> topcountriesinasia = a.gettopcountriespopuinasia(20);
+        //Display countries
+        a.displaytopcounpopuinasia(topcountriesinasia);
+
 
         // Get Country list in the world
         ArrayList<City> citypopuinworld = a.getcitypopuinworld();
@@ -416,7 +524,7 @@ public class App {
         a.displaycitypopuinworld(citypopuinworld);
 
         // Get Country list in the asia
-        ArrayList<City> citypopuinasia = a.getcitypopuinasia();
+        ArrayList<City> citypopuinasia = a.getcitypopuinasia(5);
         //Display cities
         a.displaycitypopuinasia(citypopuinasia);
 
@@ -424,7 +532,14 @@ public class App {
         ArrayList<City> citypopuinmiddleeast = a.getcitypopuinmiddleeast();
         //Display cities
         a.displaycitypopuinmiddleeast(citypopuinmiddleeast);
+
+        //Get Top City list in Asia
+        ArrayList<City> topcitypopuinasia = a.gettopcitypopuinasia();
+        //Display Cities
+        a.displaytopcitypopuinasia(topcitypopuinasia);
+
         // Disconnect from database
+
         a.disconnect();
     }
 
