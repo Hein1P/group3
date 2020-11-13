@@ -370,7 +370,7 @@ public class App {
             String strSelect =
                     "SELECT *"
                             + "FROM city, country "
-                            + "WHERE city.CountryCode = country.Code and country.Population>=0 "
+                            + "WHERE city.CountryCode = country.Code "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
