@@ -1,0 +1,36 @@
+@startuml
+
+skinparam usecase {
+FontName Aapex
+BackgroundColor Aquamarine
+BorderColor DarkCyan
+ArrowColor DarkCyan
+}
+skinparam actor{
+FontName Aapex
+BackgroundColor Aquamarine
+BorderColor DarkCyan
+}
+
+left to right direction
+skinparam packageStyle rectangle
+actor User
+usecase UC4 as "Get countries and cities data"
+rectangle database as "Database"
+UC4 <-- User
+database <-- UC4
+
+rectangle "Code Review 2" {
+User -- (Display largest to smallest population countries in the world.)
+User -- (Display largest to smallest population countries in a continent.)
+User -- (Display largest to smallest population countries in a region.)
+User -- (Display top populated countries in the world provided by user.)
+User -- (Display top populated countries in a continent provided by user.)
+User -- (Display top populated countries in a region provided by user.)
+User -- (Display largest to smallest population cities in the world.)
+User -- (Display largest to smallest population cities in a continent.)
+User -- (Display largest to smallest population cities in a region.)
+User -- (Display largest to smallest population cities in a country.)
+}
+
+@enduml
