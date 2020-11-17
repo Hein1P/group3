@@ -4,62 +4,87 @@ public class Country {
     /**
      * Country's Code
      */
-    public String Code;
+    private String Code;
     /**
      * Country's Name
      */
-    public String Name;
+    private String Name;
     /**
      * Country's Continent
      */
-    public String Continent;
+    private String Continent;
     /**
      * Country's Region
      */
-    public String Region;
-    /**
-     * Country's Surfacearea
-     */
-    public int SurfaceArea;
-    /**
-     * Country's IndepYear
-     */
-    public int IndepYear;
+    private String Region;
+
     /**
      * Country's Population
      */
-    public int Population;
-    /**
-     * Country's LifeExpectancy
-     */
-    public int LifeExpectancy;
-    /**
-     * Country's GNP
-     */
-    public int GNP;
-    /**
-     * Country's GNPOld
-     */
-    public int GNPOld;
-    /**
-     * Country's Localname
-     */
-    public String LocalName;
-    /**
-     * Country's GovernmentForm
-     */
-    public String GovernmentForm;
-    /**
-     * Country's Headofstate
-     */
-    public String HeadofState;
+    private int Population;
     /**
      * Country's Capital
      */
-    public String Capital;
-    /**
-     * Country's Code2
-     */
-    public String Code2;
+    private String Capital;
 
+    public Country(String name) {
+        Name = name;
+    }
+
+    public Country(String code, String name, String continent, String region, int population, String capital) {
+        Code = code;
+        Name = name;
+        Continent = continent;
+        Region = region;
+        Population = population;
+        Capital = capital;
+    }
+
+    public String getCode() {
+        return Code;
+    }
+
+    public void setCode(String code) {
+        Code = code;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getContinent() {
+        return Continent;
+    }
+
+    public void setContinent(String continent) {
+        Continent = continent;
+    }
+
+    public String getRegion() {
+        return Region;
+    }
+
+    public void setRegion(String region) {
+        Region = region;
+    }
+
+    public int getPopulation() {
+        return Population;
+    }
+
+    public void setPopulation(int population) {
+        Population = population;
+    }
+
+    public String getCapital() {
+        return Capital;
+    }
+
+    public void setCapital(String capital) {
+        Capital = capital;
+    }
 }

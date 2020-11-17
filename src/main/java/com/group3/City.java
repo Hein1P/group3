@@ -1,28 +1,86 @@
 package com.group3;
 
 public class City {
+
     /**
      * City's ID
      */
-    public int ID;
+    private int ID;
     /**
      * City's Name
      */
-    public String Name;
+    private String Name;
     /**
      * City's Country COde
      */
-    public String CountryCode;
+    private String CountryCode;
     /**
      * City's District
      */
-    public String District;
+    private String District;
     /**
      * City's Population
      */
-    public int Population;
+    private int Population;
     /**
      * City's Country
      */
-    public Country CountryDetail;
+    private Country CountryDetail;
+
+    public City(int ID, String name, int population, String district, Country countryDetail) {
+        this.ID = ID;
+        Name = name;
+        //CountryCode = countryCode;
+        District = district;
+        Population = population;
+        CountryDetail = countryDetail;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getCountryCode() {
+        return CountryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        CountryCode = countryCode;
+    }
+
+    public String getDistrict() {
+        return District;
+    }
+
+    public void setDistrict(String district) {
+        District = district;
+    }
+
+    public int getPopulation() {
+        return Population;
+    }
+
+    public void setPopulation(int population) {
+        Population = population;
+    }
+
+    public Country getCountryDetail() {
+        return CountryDetail;
+    }
+
+    public void setCountryDetail(Country countryDetail) {
+        CountryDetail = countryDetail;
+    }
 }
