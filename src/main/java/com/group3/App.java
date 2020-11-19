@@ -667,6 +667,107 @@ public class App {
         System.out.println("=======================================================================================================================================");
     }
 
+    /**
+     * * Get the top City name by population in descenting order in the myanmar provided by user.
+     */
+    public ArrayList<City> gettopcitypopuinmyanmar(int n) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Name = 'Myanmar' ORDER BY city.Population DESC LIMIT " + n;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return cities in myanmar if valid.
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next()) {
+                String countryname = rset.getString("country.Name");
+                Country coun = new Country(countryname);
+                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
+                cities.add(city);
+            }
+            return cities;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details in myanmar");
+            return null;
+        }
+    }
+
+    public void displaytopcitypopuinmyanmar(ArrayList<City> cities) {
+        // Check cities is not null
+        if (cities == null)
+        {
+            System.out.println("There is no data in ArrayList of Cities");
+            return;
+        }
+        //Title of table
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the myanmar organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println(String.format("%-10s %-45s %-20s %-20s", "ID", "City Name", "Population", "District"));
+        //Loop all the City get from cities list
+        for (City city : cities) {
+            if (city == null)
+                continue;
+            String city_string = String.format("%-10s %-45s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict());
+            System.out.println(city_string);
+        }
+        System.out.println("=======================================================================================================================================");
+    }
+
+
+    /**
+     * * Get the top City name by population in descenting order in the glederland provided by user.
+     */
+    public ArrayList<City> gettopcitypopuinglederland(int n) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND city.District = 'Glederland' ORDER BY city.Population DESC LIMIT " + n;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return cities in glederland if valid.
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next()) {
+                String countryname = rset.getString("country.Name");
+                Country coun = new Country(countryname);
+                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
+                cities.add(city);
+            }
+            return cities;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details in glederland");
+            return null;
+        }
+    }
+
+    public void displaytopcitypopuinglederland(ArrayList<City> cities) {
+        // Check cities is not null
+        if (cities == null)
+        {
+            System.out.println("There is no data in ArrayList of Cities");
+            return;
+        }
+        //Title of table
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the glederland organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println(String.format("%-10s %-45s %-20s %-20s", "ID", "City Name", "Population", "District"));
+        //Loop all the City get from cities list
+        for (City city : cities) {
+            if (city == null)
+                continue;
+            String city_string = String.format("%-10s %-45s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict());
+            System.out.println(city_string);
+        }
+        System.out.println("=======================================================================================================================================");
+    }
+
 
     public static void main(String[] args) {
         // Create new Application
