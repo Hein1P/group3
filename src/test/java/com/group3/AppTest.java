@@ -291,6 +291,147 @@ import static org.junit.jupiter.api.Assertions.*;
             app.displaycitypopuinvirginia(cities);
         }
 
+        @Test
+        void displaytopcitypopuinworldTestNull()
+        {
+            app.displaytopcitypopuinworld(null);
+        }
+        @Test
+        void displaytopcitypopuinworldTestEmpty()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            app.displaytopcitypopuinworld(cities);
+        }
+        @Test
+        void displaytopcitypopuinworldTestEmptyCoun()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            cities.add(null);
+            app.displaytopcitypopuinworld(cities);
+        }
+        @Test
+        void displaytopcitypopuinworldTestNormal()
+        {
+            String countryname = "Myanmar";
+            Country coun = new Country(countryname);
+            ArrayList<City> cities = new ArrayList<City>();
+            City city = new City(2710,"Rangoon (Yangon)",3361700,"Rangoon [Yangon]",coun);
+            cities.add(city);
+            app.displaytopcitypopuinworld(cities);
+        }
+        @Test
+        void displaytopcitypopuincaribbeanTestNull()
+        {
+            app.displaytopcitypopuincaribbean(null);
+        }
+        @Test
+        void displaytopcitypopuincaribbeanTestEmpty()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            app.displaytopcitypopuincaribbean(cities);
+        }
+        @Test
+        void displaytopcitypopuincaribbeanTestEmptyCoun()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            cities.add(null);
+            app.displaytopcitypopuincaribbean(cities);
+        }
+        @Test
+        void displaytopcitypopuincaribbeanTestNormal()
+        {
+            String countryname = "Myanmar";
+            Country coun = new Country(countryname);
+            ArrayList<City> cities = new ArrayList<City>();
+            City city = new City(2710,"Rangoon (Yangon)",3361700,"Rangoon [Yangon]",coun);
+            cities.add(city);
+            app.displaytopcitypopuincaribbean(cities);
+        }
+        @Test
+        void displaytopcitypopuinasiaTestNull()
+        {
+            app.displaytopcitypopuinasia(null);
+        }
+        @Test
+        void displaytopcitypopuinasiaTestEmpty()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            app.displaytopcitypopuinasia(cities);
+        }
+        @Test
+        void displaytopcitypopuinasiaTestEmptyCoun()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            cities.add(null);
+            app.displaytopcitypopuinasia(cities);
+        }
+        @Test
+        void displaytopcitypopuinasiaTestNormal()
+        {
+            String countryname = "Myanmar";
+            Country coun = new Country(countryname);
+            ArrayList<City> cities = new ArrayList<City>();
+            City city = new City(2710,"Rangoon (Yangon)",3361700,"Rangoon [Yangon]",coun);
+            cities.add(city);
+            app.displaytopcitypopuinasia(cities);
+        }
+        @Test
+        void displaytopcitypopuinmyanmarTestNull()
+        {
+            app.displaytopcitypopuinmyanmar(null);
+        }
+        @Test
+        void displaytopcitypopuinmyanmarTestEmpty()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            app.displaytopcitypopuinmyanmar(cities);
+        }
+        @Test
+        void displaytopcitypopuinmyanmarTestEmptyCoun()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            cities.add(null);
+            app.displaytopcitypopuinmyanmar(cities);
+        }
+        @Test
+        void displaytopcitypopuinmyanmarTestNormal()
+        {
+            String countryname = "Myanmar";
+            Country coun = new Country(countryname);
+            ArrayList<City> cities = new ArrayList<City>();
+            City city = new City(2710,"Rangoon (Yangon)",3361700,"Rangoon [Yangon]",coun);
+            cities.add(city);
+            app.displaytopcitypopuinmyanmar(cities);
+        }
+        @Test
+        void displaytopcitypopuinvirginiaTestNull()
+        {
+            app.displaytopcitypopuinvirginia(null);
+        }
+        @Test
+        void displaytopcitypopuinvirginiaTestEmpty()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            app.displaytopcitypopuinvirginia(cities);
+        }
+        @Test
+        void displaytopcitypopuinvirginiaTestEmptyCoun()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            cities.add(null);
+            app.displaytopcitypopuinvirginia(cities);
+        }
+        @Test
+        void displaytopcitypopuinvirginiaTestNormal()
+        {
+            String countryname = "Myanmar";
+            Country coun = new Country(countryname);
+            ArrayList<City> cities = new ArrayList<City>();
+            City city = new City(2710,"Rangoon (Yangon)",3361700,"Rangoon [Yangon]",coun);
+            cities.add(city);
+            app.displaytopcitypopuinvirginia(cities);
+        }
+
     }
 
 
