@@ -565,6 +565,109 @@ public class App {
         }
         System.out.println("=======================================================================================================================================");
     }
+
+    /**
+     * * Get the top City name by population in descenting order in the asia provided by user.
+     */
+    public ArrayList<City> gettopcitypopuinasia(int n) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' ORDER BY city.Population DESC LIMIT " + n;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return cities in asia if valid.
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next()) {
+                String countryname = rset.getString("country.Name");
+                Country coun = new Country(countryname);
+                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
+                cities.add(city);
+            }
+            return cities;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details in asia");
+            return null;
+        }
+    }
+
+    public void displaytopcitypopuinasia(ArrayList<City> cities) {
+        // Check cities is not null
+        if (cities == null)
+        {
+            System.out.println("There is no data in ArrayList of Cities");
+            return;
+        }
+        //Title of table
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the asia organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println(String.format("%-10s %-45s %-20s %-20s", "ID", "City Name", "Population", "District"));
+        //Loop all the City get from cities list
+        for (City city : cities) {
+            if (city == null)
+                continue;
+            String city_string = String.format("%-10s %-45s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict());
+            System.out.println(city_string);
+        }
+        System.out.println("=======================================================================================================================================");
+    }
+
+
+    /**
+     * * Get the top City name by population in descenting order in the caribbean provided by user.
+     */
+    public ArrayList<City> gettopcitypopuincaribbean(int n) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Region = 'Caribbean' ORDER BY city.Population DESC LIMIT " + n;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return cities in caribbean if valid.
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next()) {
+                String countryname = rset.getString("country.Name");
+                Country coun = new Country(countryname);
+                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
+                cities.add(city);
+            }
+            return cities;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details in caribbean");
+            return null;
+        }
+    }
+
+    public void displaytopcitypopuincaribbean(ArrayList<City> cities) {
+        // Check cities is not null
+        if (cities == null)
+        {
+            System.out.println("There is no data in ArrayList of Cities");
+            return;
+        }
+        //Title of table
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the caribbean organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        System.out.println(String.format("%-10s %-45s %-20s %-20s", "ID", "City Name", "Population", "District"));
+        //Loop all the City get from cities list
+        for (City city : cities) {
+            if (city == null)
+                continue;
+            String city_string = String.format("%-10s %-45s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict());
+            System.out.println(city_string);
+        }
+        System.out.println("=======================================================================================================================================");
+    }
+
+
     public static void main(String[] args) {
         // Create new Application
         App a = new App();
