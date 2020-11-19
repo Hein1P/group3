@@ -97,6 +97,34 @@ import static org.junit.jupiter.api.Assertions.*;
             countries.add(coun);
             app.displaycounpopuinasia(countries);
         }
+
+        @Test
+        void displaytopcounpopuinsoutherneuropeTestNull()
+        {
+            app.displaytopcounpopuinsoutherneurope(null);
+        }
+        @Test
+        void displaytopcounpopuinsoutherneuropeTestEmpty()
+        {
+            ArrayList<Country> countries = new ArrayList<Country>();
+            app.displaytopcounpopuinsoutherneurope(countries);
+        }
+        @Test
+        void displaytopcounpopuinsoutherneuropeTestEmptyCoun()
+        {
+            ArrayList<Country> countries = new ArrayList<Country>();
+            countries.add(null);
+            app.displaytopcounpopuinsoutherneurope(countries);
+        }
+        @Test
+        void displaytopcounpopuinsoutherneuropeTestNormal()
+        {
+            ArrayList<Country> countries = new ArrayList<Country>();
+            Country coun = new Country("MMR","Myanmar","Asia","Southeast Asia",45611000,2710);
+            countries.add(coun);
+            app.displaytopcounpopuinsoutherneurope(countries);
+        }
+
         @Test
         void displaycounpopuincaribbeanTestNull()
         {

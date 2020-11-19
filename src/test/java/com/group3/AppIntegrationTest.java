@@ -71,7 +71,23 @@ public class AppIntegrationTest
         assertEquals(coun.getRegion(), "Eastern Asia");
         assertEquals(coun.getCapital(), 1891);
     }
-
+    @Test
+    void testgettopcountriespopuinasia()
+    {
+        Country coun =app.gettopcountriespopuinasia(10).get(0);
+        assertEquals(coun.getCode(), "CHN");
+        assertEquals(coun.getName(), "China");
+        assertEquals(coun.getPopulation(), 1277558000);
+        assertEquals(coun.getContinent(), "Asia");
+        assertEquals(coun.getRegion(), "Eastern Asia");
+        assertEquals(coun.getCapital(), 1891);
+    }
+    @Test
+    void testgettopcountriespopuinasiasize()
+    {
+        int city =app.gettopcountriespopuinasia(10).size();
+        assertEquals(city, 10);
+    }
     @Test
     void testgettopcountriespopuinsoutherneurope()
     {
