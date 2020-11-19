@@ -36,14 +36,52 @@ public class AppIntegrationTest
         int coun =app.gettopcountrypopuinworld(10).size();
         assertEquals(coun, 10);
     }
+
     @Test
-    void testgetcitypopuinworld()
+    void testgetcountrypopuinasia()
     {
-        City city =app.getcitypopuinworld().get(0);
-        assertEquals(city.getID(), 1024);
-        assertEquals(city.getName(), "Mumbai (Bombay)");
-        assertEquals(city.getPopulation(), 10500000);
-        assertEquals(city.getDistrict(), "Maharashtra");
-        assertEquals(city.getCountryDetail().getName(), "India");
+        Country coun =app.getcountrypopuinasia().get(0);
+        assertEquals(coun.getCode(), "CHN");
+        assertEquals(coun.getName(), "China");
+        assertEquals(coun.getPopulation(), 1277558000);
+        assertEquals(coun.getContinent(), "Asia");
+        assertEquals(coun.getRegion(), "Eastern Asia");
+        assertEquals(coun.getCapital(), 1891);
     }
+    @Test
+    void testgetcountrypopuincaribbean()
+    {
+        Country coun =app.getcountrypopuincaribbean().get(0);
+        assertEquals(coun.getCode(), "CUB");
+        assertEquals(coun.getName(), "Cuba");
+        assertEquals(coun.getPopulation(),  11201000);
+        assertEquals(coun.getContinent(), "North America");
+        assertEquals(coun.getRegion(), "Caribbean");
+        assertEquals(coun.getCapital(), 2413);
+    }
+
+    @Test
+    void testgettopcountrypopuinworld()
+    {
+        Country coun =app.gettopcountrypopuinworld(10).get(0);
+        assertEquals(coun.getCode(), "CHN");
+        assertEquals(coun.getName(), "China");
+        assertEquals(coun.getPopulation(), 1277558000);
+        assertEquals(coun.getContinent(), "Asia");
+        assertEquals(coun.getRegion(), "Eastern Asia");
+        assertEquals(coun.getCapital(), 1891);
+    }
+
+    @Test
+    void testgettopcountriespopuinasia()
+    {
+        Country coun =app.gettopcountriespopuinasia(10).get(0);
+        assertEquals(coun.getCode(), "CHN");
+        assertEquals(coun.getName(), "China");
+        assertEquals(coun.getPopulation(), 1277558000);
+        assertEquals(coun.getContinent(), "Asia");
+        assertEquals(coun.getRegion(), "Eastern Asia");
+        assertEquals(coun.getCapital(), 1891);
+    }
+
 }
