@@ -25,13 +25,13 @@ public class Country {
     /**
      * Country's Capital
      */
-    private String Capital;
+    private int Capital;
 
     public Country(String name) {
         Name = name;
     }
 
-    public Country(String code, String name, String continent, String region, int population, String capital) {
+    public Country(String code, String name, String continent, String region, int population, int capital) {
         Code = code;
         Name = name;
         Continent = continent;
@@ -80,11 +80,11 @@ public class Country {
         Population = population;
     }
 
-    public String getCapital() {
+    public int getCapital() {
         return Capital;
     }
 
-    public void setCapital(String capital) {
+    public void setCapital(int capital) {
         Capital = capital;
     }
 }
