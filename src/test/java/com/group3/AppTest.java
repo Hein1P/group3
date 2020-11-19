@@ -175,6 +175,123 @@ import static org.junit.jupiter.api.Assertions.*;
             countries.add(coun);
             app.displaytopcounpopuinasia(countries);
         }
+        @Test
+        void displaycitypopuinasiaTestNull()
+        {
+            app.displaycitypopuinasia(null);
+        }
+        @Test
+        void displaycitypopuinasiaTestEmpty()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            app.displaycitypopuinasia(cities);
+        }
+        @Test
+        void displaycitypopuinasiaTestEmptyCoun()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            cities.add(null);
+            app.displaycitypopuinasia(cities);
+        }
+        @Test
+        void displaycitypopuinasiaTestNormal()
+        {
+            String countryname = "Myanmar";
+            Country coun = new Country(countryname);
+            ArrayList<City> cities = new ArrayList<City>();
+            City city = new City(2710,"Rangoon (Yangon)",3361700,"Rangoon [Yangon]",coun);
+            cities.add(city);
+            app.displaycitypopuinasia(cities);
+        }
+
+        @Test
+        void displaycitypopuinmiddleeastTestNull()
+        {
+            app.displaycitypopuinmiddleeast(null);
+        }
+        @Test
+        void displaycitypopuinmiddleeastTestEmpty()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            app.displaycitypopuinmiddleeast(cities);
+        }
+        @Test
+        void displaycitypopuinmiddleeastTestEmptyCoun()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            cities.add(null);
+            app.displaycitypopuinmiddleeast(cities);
+        }
+        @Test
+        void displaycitypopuinmiddleeastTestNormal()
+        {
+            String countryname = "Myanmar";
+            Country coun = new Country(countryname);
+            ArrayList<City> cities = new ArrayList<City>();
+            City city = new City(2710,"Rangoon (Yangon)",3361700,"Rangoon [Yangon]",coun);
+            cities.add(city);
+            app.displaycitypopuinmiddleeast(cities);
+        }
+
+        @Test
+        void displaycitypopuinMyanmarTestNull()
+        {
+            app.displaycitypopuinMyanmar(null);
+        }
+        @Test
+        void displaycitypopuinMyanmarTestEmpty()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            app.displaycitypopuinMyanmar(cities);
+        }
+        @Test
+        void displaycitypopuinMyanmarTestEmptyCoun()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            cities.add(null);
+            app.displaycitypopuinMyanmar(cities);
+        }
+        @Test
+        void displaycitypopuinMyanmarTestNormal()
+        {
+            String countryname = "Myanmar";
+            Country coun = new Country(countryname);
+            ArrayList<City> cities = new ArrayList<City>();
+            City city = new City(2710,"Rangoon (Yangon)",3361700,"Rangoon [Yangon]",coun);
+            cities.add(city);
+            app.displaycitypopuinMyanmar(cities);
+        }
+
+        @Test
+        void displaycitypopuinvirginiaTestNull()
+        {
+            app.displaycitypopuinvirginia(null);
+        }
+        @Test
+        void displaycitypopuinGelderlandTestEmpty()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            app.displaycitypopuinvirginia(cities);
+        }
+        @Test
+        void displaycitypopuinGelderlandTestEmptyCoun()
+        {
+            ArrayList<City> cities = new ArrayList<City>();
+            cities.add(null);
+            app.displaycitypopuinvirginia(cities);
+        }
+        @Test
+        void displaycitypopuinGelderlandTestNormal()
+        {
+            String countryname = "Myanmar";
+            Country coun = new Country(countryname);
+            ArrayList<City> cities = new ArrayList<City>();
+            City city = new City(2710,"Rangoon (Yangon)",3361700,"Rangoon [Yangon]",coun);
+            cities.add(city);
+            app.displaycitypopuinvirginia(cities);
+        }
 
     }
+
+
 
