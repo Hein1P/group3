@@ -146,4 +146,98 @@ public class AppIntegrationTest
         assertEquals(city.getCountryDetail().getName(), "United States");
     }
 
+
+    @Test
+    void testgettopcitypopuinworld()
+    {
+        City city =app.gettopcitypopuinworld(10).get(0);
+        assertEquals(city.getID(), 1024);
+        assertEquals(city.getName(), "Mumbai (Bombay)");
+        assertEquals(city.getPopulation(), 10500000);
+        assertEquals(city.getDistrict(), "Maharashtra");
+        assertEquals(city.getCountryDetail().getName(), "India");
+    }
+    @Test
+    void testgettopcitypopuinworldsize()
+    {
+        int city =app.gettopcitypopuinworld(10).size();
+        assertEquals(city, 10);
+    }
+
+
+
+    @Test
+    void testgettopcitypopuinasiasize()
+    {
+        City city =app.gettopcitypopuinasia(10).get(0);
+        assertEquals(city.getID(), 1024);
+        assertEquals(city.getName(), "Mumbai (Bombay)");
+        assertEquals(city.getPopulation(), 10500000);
+        assertEquals(city.getDistrict(), "Maharashtra");
+        assertEquals(city.getCountryDetail().getName(), "India");
+    }
+    @Test
+    void testgettopcitypopuinasia()
+    {
+        int city =app.gettopcitypopuinasia(10).size();
+        assertEquals(city, 10);
+    }
+
+
+
+    @Test
+    void testgettopcitypopuincaribbean()
+    {
+        City city =app.gettopcitypopuincaribbean(10).get(0);
+        assertEquals(city.getID(), 2413);
+        assertEquals(city.getName(), "La Habana");
+        assertEquals(city.getPopulation(), 2256000);
+        assertEquals(city.getDistrict(), "La Habana");
+        assertEquals(city.getCountryDetail().getName(), "Cuba");
+    }
+    @Test
+    void testgettopcitypopuincaribbeansize()
+    {
+        int city =app.gettopcitypopuincaribbean(10).size();
+        assertEquals(city, 10);
+    }
+
+
+
+    @Test
+    void testgettopcitypopuinmyanmar()
+    {
+        City city =app.gettopcitypopuinmyanmar(10).get(0);
+        assertEquals(city.getID(), 2710);
+        assertEquals(city.getName(), "Rangoon (Yangon)");
+        assertEquals(city.getPopulation(), 3361700);
+        assertEquals(city.getDistrict(), "Rangoon [Yangon]");
+        assertEquals(city.getCountryDetail().getName(), "Myanmar");
+    }
+    @Test
+    void testgettopcitypopuinmyanmarsize()
+    {
+        int city =app.gettopcitypopuinmyanmar(10).size();
+        assertEquals(city, 10);
+    }
+
+
+    @Test
+    void testgettopcitypopuinvirginia()
+    {
+        City city =app.gettopcitypopuinvirginia(10).get(0);
+        assertEquals(city.getID(), 3830);
+        assertEquals(city.getName(), "Virginia Beach");
+        assertEquals(city.getPopulation(), 425257);
+        assertEquals(city.getDistrict(), "Virginia");
+        assertEquals(city.getCountryDetail().getName(), "United States");
+    }
+    @Test
+    void testgettopcitypopuinvirginiasize()
+    {
+        int city =app.gettopcitypopuinvirginia(10).size();
+        assertEquals(city, 10);
+    }
+
+
 }
