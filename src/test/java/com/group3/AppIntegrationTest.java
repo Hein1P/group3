@@ -20,9 +20,9 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testgetcountrypopuinworld()
+    void testgetCountryPopuinWorld()
     {
-    Country coun =app.getcountrypopuinworld().get(0);
+        Country coun =app.getCountryPopuinWorld().get(0);
         assertEquals(coun.getCode(), "CHN");
         assertEquals(coun.getName(), "China");
         assertEquals(coun.getPopulation(), 1277558000);
@@ -31,16 +31,16 @@ public class AppIntegrationTest
         assertEquals(coun.getCapital(), 1891);
     }
     @Test
-    void testgettopcountrypopuinworldsize()
+    void testgetTopCountryPopuinWorldsize()
     {
-        int coun =app.gettopcountrypopuinworld(10).size();
+        int coun =app.getTopCountryPopuinWorld(10).size();
         assertEquals(coun, 10);
     }
 
     @Test
-    void testgetcountrypopuinasia()
+    void testgetCountryPopuinAsia()
     {
-        Country coun =app.getcountrypopuinasia().get(0);
+        Country coun =app.getCountryPopuinAsia().get(0);
         assertEquals(coun.getCode(), "CHN");
         assertEquals(coun.getName(), "China");
         assertEquals(coun.getPopulation(), 1277558000);
@@ -49,9 +49,9 @@ public class AppIntegrationTest
         assertEquals(coun.getCapital(), 1891);
     }
     @Test
-    void testgetcountrypopuincaribbean()
+    void testgetCountryPopuinCaribbean()
     {
-        Country coun =app.getcountrypopuincaribbean().get(0);
+        Country coun =app.getCountryPopuinCaribbean().get(0);
         assertEquals(coun.getCode(), "CUB");
         assertEquals(coun.getName(), "Cuba");
         assertEquals(coun.getPopulation(),  11201000);
@@ -61,9 +61,9 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testgettopcountrypopuinworld()
+    void testgetTopCountryPopuinWorld()
     {
-        Country coun =app.gettopcountrypopuinworld(10).get(0);
+        Country coun =app.getTopCountryPopuinWorld(10).get(0);
         assertEquals(coun.getCode(), "CHN");
         assertEquals(coun.getName(), "China");
         assertEquals(coun.getPopulation(), 1277558000);
@@ -72,9 +72,9 @@ public class AppIntegrationTest
         assertEquals(coun.getCapital(), 1891);
     }
     @Test
-    void testgettopcountriespopuinasia()
+    void testgetTopCountriesPopuinAsia()
     {
-        Country coun =app.gettopcountriespopuinasia(10).get(0);
+        Country coun =app.getTopCountriesPopuinAsia(10).get(0);
         assertEquals(coun.getCode(), "CHN");
         assertEquals(coun.getName(), "China");
         assertEquals(coun.getPopulation(), 1277558000);
@@ -83,15 +83,15 @@ public class AppIntegrationTest
         assertEquals(coun.getCapital(), 1891);
     }
     @Test
-    void testgettopcountriespopuinasiasize()
+    void testgetTopCountriesPopuinAsiasize()
     {
-        int city =app.gettopcountriespopuinasia(10).size();
+        int city =app.getTopCountriesPopuinAsia(10).size();
         assertEquals(city, 10);
     }
     @Test
-    void testgettopcountriespopuinsoutherneurope()
+    void testgetTopCountriesPopuinSoutherneurope()
     {
-        Country coun =app.gettopcountriespopuinsoutherneurope(10).get(0);
+        Country coun =app.getTopCountriesPopuinSoutherneurope(10).get(0);
         assertEquals(coun.getCode(), "ITA");
         assertEquals(coun.getName(), "Italy");
         assertEquals(coun.getPopulation(), 57680000);
@@ -100,17 +100,17 @@ public class AppIntegrationTest
         assertEquals(coun.getCapital(), 1464);
     }
     @Test
-    void testgettopcountriespopuinsoutherneuropesize()
+    void testgetTopCountriesPopuinSoutherneuropesize()
     {
-        int city =app.gettopcountriespopuinsoutherneurope(10).size();
+        int city =app.getTopCountriesPopuinSoutherneurope(10).size();
         assertEquals(city, 10);
     }
 
 
     @Test
-    void testgetcitypopuinworld()
+    void testgetCityPopuinWorld()
     {
-        City city =app.getcitypopuinworld().get(0);
+        City city =app.getCityPopuinWorld().get(0);
         assertEquals(city.getID(), 1024);
         assertEquals(city.getName(), "Mumbai (Bombay)");
         assertEquals(city.getPopulation(), 10500000);
@@ -119,9 +119,9 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testgetcitypopuinasia()
+    void testgetCityPopuinAsia()
     {
-        City city =app.getcitypopuinasia().get(0);
+        City city =app.getCityPopuinAsia().get(0);
         assertEquals(city.getID(), 1024);
         assertEquals(city.getName(), "Mumbai (Bombay)");
         assertEquals(city.getPopulation(), 10500000);
@@ -130,9 +130,9 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testgetcitypopuinmiddleeast()
+    void testgetCityPopuinMiddleEast()
     {
-        City city =app.getcitypopuinmiddleeast().get(0);
+        City city =app.getCityPopuinMiddleEast().get(0);
         assertEquals(city.getID(), 3357);
         assertEquals(city.getName(), "Istanbul");
         assertEquals(city.getPopulation(), 8787958);
@@ -141,9 +141,9 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testgetcitypopuinMyanmar()
+    void testgetCityPopuinMyanmar()
     {
-        City city =app.getcitypopuinMyanmar().get(0);
+        City city =app.getCityPopuinMyanmar().get(0);
         assertEquals(city.getID(), 2710);
         assertEquals(city.getName(), "Rangoon (Yangon)");
         assertEquals(city.getPopulation(), 3361700);
@@ -152,9 +152,9 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testgetcitypopuinvirginia()
+    void testgetCityPopuinVirginia()
     {
-        City city =app.getcitypopuinvirginia().get(0);
+        City city =app.getCityPopuinVirginia().get(0);
         assertEquals(city.getID(), 3830);
         assertEquals(city.getName(), "Virginia Beach");
         assertEquals(city.getPopulation(), 425257);
@@ -164,9 +164,9 @@ public class AppIntegrationTest
 
 
     @Test
-    void testgettopcitypopuinworld()
+    void testgetTopCityPopuinWorld()
     {
-        City city =app.gettopcitypopuinworld(10).get(0);
+        City city =app.getTopCityPopuinWorld(10).get(0);
         assertEquals(city.getID(), 1024);
         assertEquals(city.getName(), "Mumbai (Bombay)");
         assertEquals(city.getPopulation(), 10500000);
@@ -174,18 +174,18 @@ public class AppIntegrationTest
         assertEquals(city.getCountryDetail().getName(), "India");
     }
     @Test
-    void testgettopcitypopuinworldsize()
+    void testgetTopCityPopuinWorldsize()
     {
-        int city =app.gettopcitypopuinworld(10).size();
+        int city =app.getTopCityPopuinWorld(10).size();
         assertEquals(city, 10);
     }
 
 
 
     @Test
-    void testgettopcitypopuinasiasize()
+    void testgetTopCityPopuinAsiasize()
     {
-        City city =app.gettopcitypopuinasia(10).get(0);
+        City city =app.getTopCityPopuinAsia(10).get(0);
         assertEquals(city.getID(), 1024);
         assertEquals(city.getName(), "Mumbai (Bombay)");
         assertEquals(city.getPopulation(), 10500000);
@@ -193,18 +193,18 @@ public class AppIntegrationTest
         assertEquals(city.getCountryDetail().getName(), "India");
     }
     @Test
-    void testgettopcitypopuinasia()
+    void testgetTopCityPopuinAsia()
     {
-        int city =app.gettopcitypopuinasia(10).size();
+        int city =app.getTopCityPopuinAsia(10).size();
         assertEquals(city, 10);
     }
 
 
 
     @Test
-    void testgettopcitypopuincaribbean()
+    void testgetTopCityPopuinCaribbean()
     {
-        City city =app.gettopcitypopuincaribbean(10).get(0);
+        City city =app.getTopCityPopuinCaribbean(10).get(0);
         assertEquals(city.getID(), 2413);
         assertEquals(city.getName(), "La Habana");
         assertEquals(city.getPopulation(), 2256000);
@@ -212,18 +212,18 @@ public class AppIntegrationTest
         assertEquals(city.getCountryDetail().getName(), "Cuba");
     }
     @Test
-    void testgettopcitypopuincaribbeansize()
+    void testgetTopCityPopuinCaribbeansize()
     {
-        int city =app.gettopcitypopuincaribbean(10).size();
+        int city =app.getTopCityPopuinCaribbean(10).size();
         assertEquals(city, 10);
     }
 
 
 
     @Test
-    void testgettopcitypopuinmyanmar()
+    void testgetTopCityPopuinMyanmar()
     {
-        City city =app.gettopcitypopuinmyanmar(10).get(0);
+        City city =app.getTopCityPopuinMyanmar(10).get(0);
         assertEquals(city.getID(), 2710);
         assertEquals(city.getName(), "Rangoon (Yangon)");
         assertEquals(city.getPopulation(), 3361700);
@@ -231,17 +231,17 @@ public class AppIntegrationTest
         assertEquals(city.getCountryDetail().getName(), "Myanmar");
     }
     @Test
-    void testgettopcitypopuinmyanmarsize()
+    void testgetTopCityPopuinMyanmarsize()
     {
-        int city =app.gettopcitypopuinmyanmar(10).size();
+        int city =app.getTopCityPopuinMyanmar(10).size();
         assertEquals(city, 10);
     }
 
 
     @Test
-    void testgettopcitypopuinvirginia()
+    void testgetTopCityPopuinVirginia()
     {
-        City city =app.gettopcitypopuinvirginia(10).get(0);
+        City city =app.getTopCityPopuinVirginia(10).get(0);
         assertEquals(city.getID(), 3830);
         assertEquals(city.getName(), "Virginia Beach");
         assertEquals(city.getPopulation(), 425257);
@@ -249,9 +249,9 @@ public class AppIntegrationTest
         assertEquals(city.getCountryDetail().getName(), "United States");
     }
     @Test
-    void testgettopcitypopuinvirginiasize()
+    void testgetTopCityPopuinVirginiasize()
     {
-        int city =app.gettopcitypopuinvirginia(10).size();
+        int city =app.getTopCityPopuinVirginia(10).size();
         assertEquals(city, 10);
     }
 
