@@ -1,0 +1,37 @@
+@startuml
+skinparam usecase {
+FontName Aapex
+BackgroundColor Aquamarine
+BorderColor DarkCyan
+ArrowColor DarkCyan
+}
+skinparam actor{
+FontName Aapex
+BackgroundColor Aquamarine
+BorderColor DarkCyan
+}
+left to right direction
+skinparam packageStyle rectangle
+actor User
+rectangle database as "Database"
+rectangle "Code Review 3" {
+usecase UC2 as "Display largest to smallest population cities in a district."
+usecase UC3 as "Display top populated cities in the world provided by user."
+usecase UC4 as "Display top populated cities in a continent provided by user."
+usecase UC5 as "Display top populated cities in a region provided by user."
+usecase UC6 as "Display top populated cities in a country provided by user."
+usecase UC7 as "Display top populated cities in a district provided by user."
+User -- UC2
+User -- UC3
+User -- UC4
+User -- UC5
+User -- UC6
+User -- UC7
+}
+UC2 -- database
+UC3 -- database
+UC4 -- database
+UC5 -- database
+UC6 -- database
+UC7 -- database
+@enduml
