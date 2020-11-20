@@ -56,7 +56,7 @@ public class App {
     public void disconnect() {
         if (con != null) {
             try {
-                // Close connection
+                // Disconnect connection
                 System.out.println("Database connection closed.");
                 con.close();
 
