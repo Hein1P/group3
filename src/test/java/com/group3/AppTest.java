@@ -74,13 +74,13 @@ public class AppTest
     @Test
     void displayCounPopuinAsiaTestNull()
     {
-        app.displaycounpopuinasia(null);
+        app.displayCounPopuinAsia(null);
     }
     @Test
     void displayCounPopuinAsiaTestEmpty()
     {
         ArrayList<Country> countries = new ArrayList<Country>();
-        app.displaycounpopuinasia(countries);
+        app.displayCounPopuinAsia(countries);
     }
     @Test
     void displayCounPopuinAsiaTestEmptyCoun()
@@ -259,7 +259,7 @@ public class AppTest
         ArrayList<City> cities = new ArrayList<City>();
         City city = new City(2710,"Rangoon (Yangon)",3361700,"Rangoon [Yangon]",coun);
         cities.add(city);
-        app.displayCitypPopuinMyanmar(cities);
+        app.displayCityPopuinMyanmar(cities);
     }
 
     @Test
@@ -271,7 +271,7 @@ public class AppTest
     void displayCityPopuinGelderlandTestEmpty()
     {
         ArrayList<City> cities = new ArrayList<City>();
-        app.displaycitypopuinvirginia(cities);
+        app.displayCityPopuinVirginia(cities);
     }
     @Test
     void displayCityPopuinGelderlandTestEmptyCoun()
@@ -363,7 +363,7 @@ public class AppTest
     {
         ArrayList<City> cities = new ArrayList<City>();
         cities.add(null);
-        app.displayTopCityPopuinasia(cities);
+        app.displayTopCityPopuinAsia(cities);
     }
     @Test
     void displayTopCityPopuinAsiaTestNormal()
@@ -406,7 +406,7 @@ public class AppTest
     @Test
     void displayTopCityPopuinVirginiaTestNull()
     {
-        app.displayTopCityPopuinvirginia(null);
+        app.displayTopCityPopuinVirginia(null);
     }
     @Test
     void displayTopCityPopuinVirginiaTestEmpty()
