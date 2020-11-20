@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Hein1P/group3.svg?token=eW7Dp2N5wrCBtvVpNxus&branch=master)](https://travis-ci.com/Hein1P/group3)
+[![Build Status](https://travis-ci.org/Hein1P/group3.svg?branch=master)](https://travis-ci.org/Hein1P/group3)
 [![Build Status](https://travis-ci.com/Hein1P/group3.svg?token=eW7Dp2N5wrCBtvVpNxus&branch=develop)](https://travis-ci.com/Hein1P/group3)
 [![Build Status](https://travis-ci.com/Hein1P/group3.svg?token=eW7Dp2N5wrCBtvVpNxus&branch=release)](https://travis-ci.com/Hein1P/group3)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
