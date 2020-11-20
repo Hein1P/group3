@@ -6,3 +6,4 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 [![Contributors](https://img.shields.io/badge/Contributors-4-yellowgreen)](https://github.com/Hein1P)
 [![Built by Group 3](https://img.shields.io/badge/Built%20By-Group3-blueviolet)](https://github.com/Hein1P)
+[![codecov](https://codecov.io/gh/Hein1P/group3/branch/master/graph/badge.svg?token=SG0X1U6UZE)](https://codecov.io/gh/Hein1P/group3)
