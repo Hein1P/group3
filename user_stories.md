@@ -19,3 +19,16 @@
 9. As a Contributor I want to "display all cities in region from largest to smallest" so that the organization can look the cities which is in the region with largest to smallest.
 
 10. As a Contributor I want to "show all cities from largest to smallest that is in country" so that the organization can look all the cities from largest to smallest but which is only in the country.
+
+11. As a Contributor I want to "show all cities from largest to smallest that is in district"  so that the organization can look all the cities from largest to smallest which is in district.
+
+12. As a Contributor I want to "show top N populated cities in the world that provided by the user" so that the organization can look only the top populated cities where the user provided in the world.
+
+13. As a Contributor I want to "show top N populated cities in the continent that provided by the user" so that the organization can look only the top populated cities where the user provided in the continent.
+
+14. As a Contributor I want to "show top N populated cities in the region that provided by the user" so that the organization can look only the top populated cities in the region where the user provided.
+
+15. As a Contributor I want to "show top N populated cities in the country that provided by the user" so that the organization can look only the top populated cities in country where the user provided.
+
+16. As a Contributor I want to "show top N populated cities in the district that provided by the user" so that the organization can look only the top populated cities where the user provided in the district.
+
