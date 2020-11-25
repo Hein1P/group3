@@ -65,42 +65,47 @@ public class App {
             }
         }
     }
+    /** Get data from database */
+    public ResultSet getDataFromQuery(String query) {
+        try{
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Execute SQL statement and return
+            return stmt.executeQuery(query);
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    /** Setting the data to the result */
+    void setCountryDataFromQueryResult(ArrayList<Country> countries, ResultSet rset) {
+        try{
+            while(rset.next()) {
+                countries.add(new Country(rset.getString("Code"),rset.getString("country.Name"),rset.getString("continent"), rset.getString("Region"),rset.getInt("population"),rset.getInt("Capital")));
+            }
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+        }
+    }
     /**
      * * Get the country name by population in descenting order in the world.
      */
     public ArrayList<Country> getCountryPopuinWorld() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
+
             // Create string for SQL statement
-            String strSelect ="SELECT Code, country.Name, Population, Continent, Region, Capital FROM country ORDER BY country.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return all countries if valid.
-
+            String strSelect = "SELECT Code, country.Name, Population, Continent, Region, Capital FROM country ORDER BY country.Population DESC";
             ArrayList<Country> countries = new ArrayList<Country>();
-            while (rset.next()) {
-                Country coun = new Country(rset.getString("Code"),rset.getString("country.Name"),rset.getString("continent"), rset.getString("Region"),rset.getInt("population"),rset.getInt("Capital"));
-                countries.add(coun);
-            }
+            setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
             return countries;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get country details");
-            return null;
-        }
     }
 
-    public void displayCounPopuinWorld(ArrayList<Country> countries) {
+
+    public void displayCountry(ArrayList<Country> countries) {
         if(countries == null){
             System.out.println("There is no data in Arraylist of countries");
             return;
         }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the countries in the world organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
@@ -115,27 +120,12 @@ public class App {
      * * Get the country name by population in descenting order in asia.
      */
     public ArrayList<Country> getCountryPopuinAsia() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT Code, country.Name, Population, Continent, Region, Capital FROM country WHERE Continent = 'Asia' ORDER BY country.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return countries in asia if valid.
-            ArrayList<Country> countries = new ArrayList<Country>();
-            while (rset.next()) {
-                Country coun = new Country(rset.getString("Code"),rset.getString("country.Name"),rset.getString("continent"), rset.getString("Region"),rset.getInt("population"),rset.getInt("Capital"));
-                countries.add(coun);
-            }
-            return countries;
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get country details in asia");
-            return null;
-        }
+            // Create string for SQL statement
+            String strSelect = "SELECT Code, country.Name, Population, Continent, Region, Capital FROM country WHERE Continent = 'Asia' ORDER BY country.Population DESC";
+            ArrayList<Country> countries = new ArrayList<Country>();
+            setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
+            return countries;
     }
 
     public void displayCounPopuinAsia(ArrayList<Country> countries) {
@@ -162,26 +152,12 @@ public class App {
      * * Get the country name by population in descenting order in caribbean.
      */
     public ArrayList<Country> getCountryPopuinCaribbean() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
+
             // Create string for SQL statement
             String strSelect ="SELECT Code, country.Name, Population, Continent, Region, Capital FROM country WHERE Region = 'Caribbean' ORDER BY country.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return countries in asia if valid.
-            ArrayList<Country> countries = new ArrayList<Country>();
-            while (rset.next()) {
-                Country coun = new Country(rset.getString("Code"),rset.getString("country.Name"),rset.getString("continent"), rset.getString("Region"),rset.getInt("population"),rset.getInt("Capital"));
-                countries.add(coun);
-            }
-            return countries;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get country details in caribbean");
-            return null;
-        }
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
+        return countries;
     }
 
     public void displayCounPopuinCaribbean(ArrayList<Country> countries) {
@@ -208,27 +184,11 @@ public class App {
      * * Get the top country name by population in descenting order in the world provided by user.
      */
     public ArrayList<Country> getTopCountryPopuinWorld(int n) {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect ="SELECT Code, country.Name, Population, Continent, Region, Capital FROM country ORDER BY country.Population DESC LIMIT " + n ;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return all countries if valid.
-
-            ArrayList<Country> countries = new ArrayList<Country>();
-            while (rset.next()) {
-                Country coun = new Country(rset.getString("Code"),rset.getString("country.Name"),rset.getString("continent"), rset.getString("Region"),rset.getInt("population"),rset.getInt("Capital"));
-                countries.add(coun);
-            }
-            return countries;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get country details");
-            return null;
-        }
+        String strSelect ="SELECT Code, country.Name, Population, Continent, Region, Capital FROM country ORDER BY country.Population DESC LIMIT " + n ;
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
+        return countries;
     }
 
     public void displayTopCounPopuinWorld(ArrayList<Country> countries) {
@@ -255,27 +215,11 @@ public class App {
      * * Get the top country name by population in descenting order in the asia provided by user.
      */
     public ArrayList<Country> getTopCountriesPopuinAsia(int n) {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect ="SELECT Code, country.Name, Population, Continent, Region, Capital FROM country WHERE country.Continent = 'Asia' ORDER BY country.Population DESC LIMIT " + n ;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return all countries if valid.
-
-            ArrayList<Country> countries = new ArrayList<Country>();
-            while (rset.next()) {
-                Country coun = new Country(rset.getString("Code"),rset.getString("country.Name"),rset.getString("continent"), rset.getString("Region"),rset.getInt("population"),rset.getInt("Capital"));
-                countries.add(coun);
-            }
-            return countries;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get country details");
-            return null;
-        }
+        String strSelect ="SELECT Code, country.Name, Population, Continent, Region, Capital FROM country WHERE country.Continent = 'Asia' ORDER BY country.Population DESC LIMIT " + n ;
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
+        return countries;
     }
 
     public void displayTopCounPopuinAsia(ArrayList<Country> countries) {
@@ -303,27 +247,11 @@ public class App {
      * * Get the top country name by population in descenting order in the region provided by user.
      */
     public ArrayList<Country> getTopCountriesPopuinSoutherneurope(int n) {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect ="SELECT Code, country.Name, Population, Continent, Region, Capital FROM country WHERE country.Region = 'Southern Europe' ORDER BY country.Population DESC LIMIT " + n ;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return all countries if valid.
-
-            ArrayList<Country> countries = new ArrayList<Country>();
-            while (rset.next()) {
-                Country coun = new Country(rset.getString("Code"),rset.getString("country.Name"),rset.getString("continent"), rset.getString("Region"),rset.getInt("population"),rset.getInt("Capital"));
-                countries.add(coun);
-            }
-            return countries;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get country details");
-            return null;
-        }
+        // Create string for SQL statement
+        String strSelect ="SELECT Code, country.Name, Population, Continent, Region, Capital FROM country WHERE country.Region = 'Southern Europe' ORDER BY country.Population DESC LIMIT " + n ;
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
+        return countries;
     }
 
     public void displayTopCounPopuinSoutherneurope(ArrayList<Country> countries) {
@@ -856,32 +784,36 @@ public class App {
         // Get Country list in the world
         ArrayList<Country> countries = a.getCountryPopuinWorld();
         // Display countries
-        a.displayCounPopuinWorld(countries);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the countries in the world organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCountry(countries);
 
         // Get Country list in asia
         ArrayList<Country> asiacountries = a.getCountryPopuinAsia();
         // Display countries
-        a.displayCounPopuinAsia(asiacountries);
+
+        a.displayCountry(asiacountries);
 
         // Get Country list in caribbeanm
         ArrayList<Country> caribbeancountries = a.getCountryPopuinCaribbean();
         // Display countries
-        a.displayCounPopuinCaribbean(caribbeancountries);
+        a.displayCountry(caribbeancountries);
 
         // Get Top Country list in world by user input
         ArrayList<Country> topcountriesinworld = a.getTopCountryPopuinWorld(10);
         // Display countries
-        a.displayTopCounPopuinWorld(topcountriesinworld);
+        a.displayCountry(topcountriesinworld);
 
         //Get Top Country List in Asia by user input
         ArrayList<Country> topcountriesinasia = a.getTopCountriesPopuinAsia(10);
         //Display countries
-        a.displayTopCounPopuinAsia(topcountriesinasia);
+        a.displayCountry(topcountriesinasia);
 
         //Get Top Country List in Region by user input
         ArrayList<Country> topcountriesinsoutherneurope = a.getTopCountriesPopuinSoutherneurope(10);
         //Display countries
-        a.displayTopCounPopuinSoutherneurope(topcountriesinsoutherneurope);
+        a.displayCountry(topcountriesinsoutherneurope);
 
         // Get City list in the world
         ArrayList<City> citypopuinworld = a.getCityPopuinWorld();
