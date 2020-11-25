@@ -118,6 +118,7 @@ public class App {
             System.out.println("There is no data in Arraylist of countries");
             return;
         }
+        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
         for (Country coun : countries) {
@@ -133,6 +134,7 @@ public class App {
             System.out.println("There is no data in Arraylist of cities");
             return;
         }
+        System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
         //Loop all the City get from cities list
         for (City city : cities) {
@@ -342,128 +344,97 @@ public class App {
         // Display countries
         System.out.println("=======================================================================================================================================");
         System.out.println("All the countries in the world organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCountry(countries);
 
         // Get Country list in asia
         ArrayList<Country> asiacountries = a.getCountryPopuinAsia();
         // Display countries
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the countries in a continent organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCountry(asiacountries);
 
         // Get Country list in caribbeanm
         ArrayList<Country> caribbeancountries = a.getCountryPopuinCaribbean();
         // Display countries
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the countries in a region organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCountry(caribbeancountries);
 
         // Get Top Country list in world by user input
         ArrayList<Country> topcountriesinworld = a.getTopCountryPopuinWorld(10);
         // Display countries
-        System.out.println("=======================================================================================================================================");
         System.out.println("The top N populated countries in the world where N is provided by the user.");
-        System.out.println("=======================================================================================================================================");
         a.displayCountry(topcountriesinworld);
 
         //Get Top Country List in Asia by user input
         ArrayList<Country> topcountriesinasia = a.getTopCountriesPopuinAsia(10);
         //Display countries
-        System.out.println("=======================================================================================================================================");
         System.out.println("The top N populated countries in a continent where N is provided by the user.");
-        System.out.println("=======================================================================================================================================");
         a.displayCountry(topcountriesinasia);
 
         //Get Top Country List in Region by user input
         ArrayList<Country> topcountriesinsoutherneurope = a.getTopCountriesPopuinSoutherneurope(10);
         //Display countries
-        System.out.println("=======================================================================================================================================");
         System.out.println("The top N populated countries in a region where N is provided by the user.");
-        System.out.println("=======================================================================================================================================");
         a.displayCountry(topcountriesinsoutherneurope);
 
         // Get City list in the world
         ArrayList<City> citypopuinworld = a.getCityPopuinWorld();
         //Display cities
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in the world organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCity(citypopuinworld);
 
         // Get Country list in the asia
         ArrayList<City> citypopuinasia = a.getCityPopuinAsia();
         //Display cities
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in a continent organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCity(citypopuinasia);
 
         // Get Country list in the middle east
         ArrayList<City> citypopuinmiddleeast = a.getCityPopuinMiddleEast();
         //Display cities
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in a region organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCity(citypopuinmiddleeast);
 
         // Get Country list in Myanmar
         ArrayList<City> citypopuinMyanmar = a.getCityPopuinMyanmar();
         //Display cities
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in a country organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCity(citypopuinMyanmar);
 
         // Get Country list in Rangoon
         ArrayList<City> citypopuinvirginia = a.getCityPopuinVirginia();
         //Display cities
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in a District organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCity(citypopuinvirginia);
 
         // Get Top City list in world by user input
         ArrayList<City> topcitiesinworld = a.getTopCityPopuinWorld(10);
         // Display Cities
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in the world organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCity(topcitiesinworld);
 
         //Get Top City list in asia by user input
         ArrayList<City> topcitiesinasia = a.getTopCityPopuinAsia(10);
         // Display Cities
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in the asia organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCity(topcitiesinasia);
 
 
         //Get Top City list in caribbean by user input
         ArrayList<City> topcitiesincaribbean = a.getTopCityPopuinCaribbean(10);
         // Display Cities
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in the caribbean organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCity(topcitiesincaribbean);
 
         // Get Top City list in myanmar by user input
         ArrayList<City> topcitiesinmyanmar = a.getTopCityPopuinMyanmar(10);
         // Display Cities
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in the myanmar organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCity(topcitiesinmyanmar);
 
         // Get Top City list in virginia by user input
         ArrayList<City> topcitiesinvirginia = a.getTopCityPopuinVirginia(10);
         // Display Cities
-        System.out.println("=======================================================================================================================================");
         System.out.println("All the cities in the virginia organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
         a.displayCity(topcitiesinvirginia);
 
         System.out.println("Hein");
