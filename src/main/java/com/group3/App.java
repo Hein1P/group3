@@ -1,5 +1,6 @@
 package com.group3;
 
+import javax.print.CancelablePrintJob;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -77,7 +78,7 @@ public class App {
             return null;
         }
     }
-    /** Setting the data to the result */
+    /** Setting the Country data to the result */
     void setCountryDataFromQueryResult(ArrayList<Country> countries, ResultSet rset) {
         try{
             while(rset.next()) {
@@ -86,6 +87,17 @@ public class App {
         }catch(Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get country details");
+        }
+    }
+    /** Setting the City data to the result */
+    void setCityDataFromQueryResult(ArrayList<City> cities, ResultSet rset) {
+        try{
+            while(rset.next()) {
+                cities.add(new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), new Country(rset.getString("country.name"))));
+            }
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
         }
     }
     /**
@@ -116,6 +128,21 @@ public class App {
         }
         System.out.println("=======================================================================================================================================");
     }
+    public void displayCity(ArrayList<City> cities) {
+        if(cities == null){
+            System.out.println("There is no data in Arraylist of cities");
+            return;
+        }
+        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
+        //Loop all the City get from cities list
+        for (City city : cities) {
+            if (city == null)
+                continue;
+            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
+            System.out.println(city_string);
+        }
+        System.out.println("=======================================================================================================================================");
+    }
     /**
      * * Get the country name by population in descenting order in asia.
      */
@@ -128,25 +155,6 @@ public class App {
             return countries;
     }
 
-    public void displayCounPopuinAsia(ArrayList<Country> countries) {
-        if(countries == null){
-            System.out.println("There is no data in Arraylist of countries");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the countries in a continent organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
-        //Loop all the country get from countries list
-        for (Country coun : countries) {
-            if (coun == null)
-                continue;
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.getCode(), coun.getName(),coun.getPopulation(), coun.getContinent(), coun.getRegion(), coun.getCapital());
-            System.out.println(coun_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
 
     /**
      * * Get the country name by population in descenting order in caribbean.
@@ -154,31 +162,12 @@ public class App {
     public ArrayList<Country> getCountryPopuinCaribbean() {
 
             // Create string for SQL statement
-            String strSelect ="SELECT Code, country.Name, Population, Continent, Region, Capital FROM country WHERE Region = 'Caribbean' ORDER BY country.Population DESC";
+        String strSelect ="SELECT Code, country.Name, Population, Continent, Region, Capital FROM country WHERE Region = 'Caribbean' ORDER BY country.Population DESC";
         ArrayList<Country> countries = new ArrayList<Country>();
         setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
         return countries;
     }
 
-    public void displayCounPopuinCaribbean(ArrayList<Country> countries) {
-        if(countries == null){
-            System.out.println("There is no data in Arraylist of countries");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the countries in a region organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
-        //Loop all the country get from countries list
-        for (Country coun : countries) {
-            if (coun == null)
-                continue;
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.getCode(), coun.getName(),coun.getPopulation(), coun.getContinent(), coun.getRegion(), coun.getCapital());
-            System.out.println(coun_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
 
     /**
      * * Get the top country name by population in descenting order in the world provided by user.
@@ -191,25 +180,6 @@ public class App {
         return countries;
     }
 
-    public void displayTopCounPopuinWorld(ArrayList<Country> countries) {
-        if(countries == null){
-            System.out.println("There is no data in Arraylist of countries");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("The top N populated countries in the world where N is provided by the user.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
-        //Loop all the country get from countries list
-        for (Country coun : countries) {
-            if (coun == null)
-                continue;
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.getCode(), coun.getName(),coun.getPopulation(), coun.getContinent(), coun.getRegion(), coun.getCapital());
-            System.out.println(coun_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
 
     /**
      * * Get the top country name by population in descenting order in the asia provided by user.
@@ -222,25 +192,6 @@ public class App {
         return countries;
     }
 
-    public void displayTopCounPopuinAsia(ArrayList<Country> countries) {
-        if(countries == null){
-            System.out.println("There is no data in Arraylist of countries");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("The top N populated countries in a continent where N is provided by the user.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
-        //Loop all the country get from countries list
-        for (Country coun : countries) {
-            if (coun == null)
-                continue;
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.getCode(), coun.getName(),coun.getPopulation(), coun.getContinent(), coun.getRegion(), coun.getCapital());
-            System.out.println(coun_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
 
 
     /**
@@ -254,516 +205,121 @@ public class App {
         return countries;
     }
 
-    public void displayTopCounPopuinSoutherneurope(ArrayList<Country> countries) {
-        if(countries == null){
-            System.out.println("There is no data in Arraylist of countries");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("The top N populated countries in a region where N is provided by the user.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
-        //Loop all the country get from countries list
-        for (Country coun : countries) {
-            if (coun == null)
-                continue;
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.getCode(), coun.getName(),coun.getPopulation(), coun.getContinent(), coun.getRegion(), coun.getCapital());
-            System.out.println(coun_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
 
     /**
      * * Get the cities name by population in descenting order in world.
      */
     public ArrayList<City> getCityPopuinWorld() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code ORDER BY city.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return countries in world if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                String countryname = rset.getString("country.Name");
-                Country coun = new Country(countryname);
-                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in world");
-            return null;
-        }
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code ORDER BY city.Population DESC";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
     }
 
-    public void displayCityPopuinWorld(ArrayList<City> cities) {
-        if(cities == null){
-            System.out.println("There is no data in Arraylist of cities");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the cities in the world organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
 
     /**
      * * Get the cities name by population in descenting order in a Asia.
      */
     public ArrayList<City> getCityPopuinAsia() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' ORDER BY city.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return countries in world if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                String countryname = rset.getString("country.Name");
-                Country coun = new Country(countryname);
-                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in Asia");
-            return null;
-        }
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' ORDER BY city.Population DESC";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
     }
-
-    public void displayCityPopuinAsia(ArrayList<City> cities) {
-        if(cities == null){
-            System.out.println("There is no data in Arraylist of cities");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the cities in a continent organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
-
 
 
     /**
      * * Get the cities name by population in descenting order in middle east.
      */
     public ArrayList<City> getCityPopuinMiddleEast() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Region = 'Middle East' ORDER BY city.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return countries in middle east if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                String countryname = rset.getString("country.Name");
-                Country coun = new Country(countryname);
-                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in middle east");
-            return null;
-        }
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Region = 'Middle East' ORDER BY city.Population DESC";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
     }
 
-    public void displayCityPopuinMiddleEast(ArrayList<City> cities) {
-        if(cities == null){
-            System.out.println("There is no data in Arraylist of cities");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the cities in a region organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
     /**
      * * Get the cities name by population in descenting order in Myanmar.
      */
     public ArrayList<City> getCityPopuinMyanmar() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Code = 'MMR' ORDER BY city.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return countries in middle east if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                String countryname = rset.getString("country.Name");
-                Country coun = new Country(countryname);
-                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in Myanmar");
-            return null;
-        }
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Code = 'MMR' ORDER BY city.Population DESC";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
     }
 
-    public void displayCityPopuinMyanmar(ArrayList<City> cities) {
-        if(cities == null){
-            System.out.println("There is no data in Arraylist of cities");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the cities in a country organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
     /**
      * * Get the cities name by population in descenting order in virginia.
      */
     public ArrayList<City> getCityPopuinVirginia() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND city.District = 'virginia' ORDER BY city.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return countries in middle east if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                String countryname = rset.getString("country.Name");
-                Country coun = new Country(countryname);
-                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in virginia");
-            return null;
-        }
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND city.District = 'virginia' ORDER BY city.Population DESC";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
     }
 
-    public void displayCityPopuinVirginia(ArrayList<City> cities) {
-        if (cities == null)
-        {
-            System.out.println("There is no data in ArrayList of Cities");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the cities in a District organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
     /**
      * * Get the top City name by population in descenting order in the world provided by user.
      */
     public ArrayList<City> getTopCityPopuinWorld(int n) {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code ORDER BY city.Population DESC LIMIT " + n;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return cities in world if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                String countryname = rset.getString("country.Name");
-                Country coun = new Country(countryname);
-                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in world");
-            return null;
-        }
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code ORDER BY city.Population DESC LIMIT " + n;
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
     }
 
-    public void displayTopCityPopuinWorld(ArrayList<City> cities) {
-        // Check cities is not null
-        if (cities == null)
-        {
-            System.out.println("There is no data in ArrayList of Cities");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the cities in the world organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
 
     /**
      * * Get the top City name by population in descenting order in the asia provided by user.
      */
     public ArrayList<City> getTopCityPopuinAsia(int n) {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' ORDER BY city.Population DESC LIMIT " + n;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return cities in asia if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                String countryname = rset.getString("country.Name");
-                Country coun = new Country(countryname);
-                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in asia");
-            return null;
-        }
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' ORDER BY city.Population DESC LIMIT " + n;
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
     }
 
-    public void displayTopCityPopuinAsia(ArrayList<City> cities) {
-        // Check cities is not null
-        if (cities == null)
-        {
-            System.out.println("There is no data in ArrayList of Cities");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the cities in the asia organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
 
 
     /**
      * * Get the top City name by population in descenting order in the caribbean provided by user.
      */
     public ArrayList<City> getTopCityPopuinCaribbean(int n) {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Region = 'Caribbean' ORDER BY city.Population DESC LIMIT " + n;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return cities in caribbean if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                String countryname = rset.getString("country.Name");
-                Country coun = new Country(countryname);
-                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in caribbean");
-            return null;
-        }
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Region = 'Caribbean' ORDER BY city.Population DESC LIMIT " + n;
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
     }
 
-    public void displayTopCityPopuinCaribbean(ArrayList<City> cities) {
-        // Check cities is not null
-        if (cities == null)
-        {
-            System.out.println("There is no data in ArrayList of Cities");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the cities in the caribbean organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
 
     /**
      * * Get the top City name by population in descenting order in the myanmar provided by user.
      */
     public ArrayList<City> getTopCityPopuinMyanmar(int n) {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Name = 'Myanmar' ORDER BY city.Population DESC LIMIT " + n;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return cities in myanmar if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                String countryname = rset.getString("country.Name");
-                Country coun = new Country(countryname);
-                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in myanmar");
-            return null;
-        }
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Name = 'Myanmar' ORDER BY city.Population DESC LIMIT " + n;
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
     }
-
-    public void displayTopCityPopuinMyanmar(ArrayList<City> cities) {
-        // Check cities is not null
-        if (cities == null)
-        {
-            System.out.println("There is no data in ArrayList of Cities");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the cities in the myanmar organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
-    }
-
 
     /**
      * * Get the top City name by population in descenting order in the virginia provided by user.
      */
     public ArrayList<City> getTopCityPopuinVirginia(int n) {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND city.District = 'Virginia' ORDER BY city.Population DESC LIMIT " + n;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return cities in virginia if valid.
-            ArrayList<City> cities = new ArrayList<City>();
-            while (rset.next()) {
-                String countryname = rset.getString("country.Name");
-                Country coun = new Country(countryname);
-                City city = new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), coun);
-                cities.add(city);
-            }
-            return cities;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details in virginia");
-            return null;
-        }
-    }
-
-    public void displayTopCityPopuinVirginia(ArrayList<City> cities) {
-        // Check cities is not null
-        if (cities == null)
-        {
-            System.out.println("There is no data in ArrayList of Cities");
-            return;
-        }
-        //Title of table
-        System.out.println("=======================================================================================================================================");
-        System.out.println("All the cities in the virginia organised by largest population to smallest.");
-        System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
-        //Loop all the City get from cities list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
-            System.out.println(city_string);
-        }
-        System.out.println("=======================================================================================================================================");
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND city.District = 'Virginia' ORDER BY city.Population DESC LIMIT " + n;
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
     }
 
 
@@ -792,81 +348,125 @@ public class App {
         // Get Country list in asia
         ArrayList<Country> asiacountries = a.getCountryPopuinAsia();
         // Display countries
-
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the countries in a continent organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
         a.displayCountry(asiacountries);
 
         // Get Country list in caribbeanm
         ArrayList<Country> caribbeancountries = a.getCountryPopuinCaribbean();
         // Display countries
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the countries in a region organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
         a.displayCountry(caribbeancountries);
 
         // Get Top Country list in world by user input
         ArrayList<Country> topcountriesinworld = a.getTopCountryPopuinWorld(10);
         // Display countries
+        System.out.println("=======================================================================================================================================");
+        System.out.println("The top N populated countries in the world where N is provided by the user.");
+        System.out.println("=======================================================================================================================================");
         a.displayCountry(topcountriesinworld);
 
         //Get Top Country List in Asia by user input
         ArrayList<Country> topcountriesinasia = a.getTopCountriesPopuinAsia(10);
         //Display countries
+        System.out.println("=======================================================================================================================================");
+        System.out.println("The top N populated countries in a continent where N is provided by the user.");
+        System.out.println("=======================================================================================================================================");
         a.displayCountry(topcountriesinasia);
 
         //Get Top Country List in Region by user input
         ArrayList<Country> topcountriesinsoutherneurope = a.getTopCountriesPopuinSoutherneurope(10);
         //Display countries
+        System.out.println("=======================================================================================================================================");
+        System.out.println("The top N populated countries in a region where N is provided by the user.");
+        System.out.println("=======================================================================================================================================");
         a.displayCountry(topcountriesinsoutherneurope);
 
         // Get City list in the world
         ArrayList<City> citypopuinworld = a.getCityPopuinWorld();
         //Display cities
-        a.displayCityPopuinWorld(citypopuinworld);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the world organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCity(citypopuinworld);
 
         // Get Country list in the asia
         ArrayList<City> citypopuinasia = a.getCityPopuinAsia();
         //Display cities
-        a.displayCityPopuinAsia(citypopuinasia);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in a continent organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCity(citypopuinasia);
 
         // Get Country list in the middle east
         ArrayList<City> citypopuinmiddleeast = a.getCityPopuinMiddleEast();
         //Display cities
-        a.displayCityPopuinMiddleEast(citypopuinmiddleeast);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in a region organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCity(citypopuinmiddleeast);
 
         // Get Country list in Myanmar
         ArrayList<City> citypopuinMyanmar = a.getCityPopuinMyanmar();
         //Display cities
-        a.displayCityPopuinMyanmar(citypopuinMyanmar);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in a country organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCity(citypopuinMyanmar);
 
         // Get Country list in Rangoon
         ArrayList<City> citypopuinvirginia = a.getCityPopuinVirginia();
         //Display cities
-        a.displayCityPopuinVirginia(citypopuinvirginia);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in a District organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCity(citypopuinvirginia);
 
         // Get Top City list in world by user input
         ArrayList<City> topcitiesinworld = a.getTopCityPopuinWorld(10);
         // Display Cities
-        a.displayTopCityPopuinWorld(topcitiesinworld);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the world organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCity(topcitiesinworld);
 
         //Get Top City list in asia by user input
         ArrayList<City> topcitiesinasia = a.getTopCityPopuinAsia(10);
         // Display Cities
-        a.displayTopCityPopuinAsia(topcitiesinasia);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the asia organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCity(topcitiesinasia);
 
 
         //Get Top City list in caribbean by user input
         ArrayList<City> topcitiesincaribbean = a.getTopCityPopuinCaribbean(10);
         // Display Cities
-        a.displayTopCityPopuinCaribbean(topcitiesincaribbean);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the caribbean organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCity(topcitiesincaribbean);
 
         // Get Top City list in myanmar by user input
         ArrayList<City> topcitiesinmyanmar = a.getTopCityPopuinMyanmar(10);
         // Display Cities
-        a.displayTopCityPopuinMyanmar(topcitiesinmyanmar);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the myanmar organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCity(topcitiesinmyanmar);
 
         // Get Top City list in virginia by user input
         ArrayList<City> topcitiesinvirginia = a.getTopCityPopuinVirginia(10);
         // Display Cities
-        a.displayTopCityPopuinVirginia(topcitiesinvirginia);
+        System.out.println("=======================================================================================================================================");
+        System.out.println("All the cities in the virginia organised by largest population to smallest.");
+        System.out.println("=======================================================================================================================================");
+        a.displayCity(topcitiesinvirginia);
 
-
+        System.out.println("Hein");
         // Disconnect from database
         a.disconnect();
     }
