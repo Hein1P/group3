@@ -23,9 +23,25 @@ public class City {
      */
     private int Population;
     /**
+     * City's Sum Population
+     */
+    private long CitySumPopulation;
+
+    /**
+     * No City's Sum Population
+     */
+    private long NoCitySumPopulation;
+
+    /**
      * City's Country
      */
     private Country CountryDetail;
+
+    public City(long citySumPopulation, long noCitySumPopulation, Country countryDetail) {
+        CitySumPopulation = citySumPopulation;
+        NoCitySumPopulation = noCitySumPopulation;
+        CountryDetail = countryDetail;
+    }
 
     public City(int ID, String name, int population, String district, Country countryDetail) {
         this.ID = ID;
@@ -80,7 +96,24 @@ public class City {
         return CountryDetail;
     }
 
+
     public void setCountryDetail(Country countryDetail) {
         CountryDetail = countryDetail;
+    }
+
+    public long getCitySumPopulation() {
+        return CitySumPopulation;
+    }
+
+    public void setCitySumPopulation(long citySumPopulation) {
+        CitySumPopulation = citySumPopulation;
+    }
+
+    public long getNoCitySumPopulation() {
+        return NoCitySumPopulation;
+    }
+
+    public void setNoCitySumPopulation(long noCitySumPopulation) {
+        NoCitySumPopulation = noCitySumPopulation;
     }
 }

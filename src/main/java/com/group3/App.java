@@ -94,13 +94,24 @@ public class App {
         try{
             while(rset.next()) {
                 cities.add(new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), new Country(rset.getString("country.name"))));
+
             }
         }catch(Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get city details");
         }
     }
-
+    /** Setting the City data to the result */
+    void setCitySumDataFromQueryResult(ArrayList<City> cities, ResultSet rset) {
+        try{
+            while(rset.next()) {
+                cities.add(new City(rset.getLong("CitySumPopulation"),rset.getLong("NoCityPopulation"), new Country(rset.getString("Continent"))));
+            }
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+        }
+    }
     public void displayCountry(ArrayList<Country> countries) {
         if(countries == null){
             System.out.println("There is no data in Arraylist of countries");
@@ -392,84 +403,44 @@ public class App {
         return cities;
     }
 
-    public int getCityPopuOfPeopleinAsia(){
+    public ArrayList<City> getCityPopuOfPeopleinEachContinent(){
         // Create string for SQL statement
-        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Continent= 'Asia' ";
+        String strSelect = "SELECT SUM(city.Population) as CitySumPopulation, country.Continent, SUM(country.Population) - SUM(city.Population) as NoCityPopulation FROM city, country WHERE city.CountryCode = country.Code group by country.Continent";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCitySumDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
+    }
+    /**
+    public ArrayList<City> getCityPopuOfPeopleinEachRegion(){
+        // Create string for SQL statement
+        String strSelect = "SELECT SUM(city.Population) as SumPopulation, country.Continent FROM city, country WHERE city.CountryCode = country.Code group by country.Continent";
         ArrayList<City> cities = new ArrayList<City>();
         setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
-        int CityPeop = 0;
-        for(City city:cities){
-            CityPeop = city.getPopulation() + CityPeop;
-        }
-        return CityPeop;
+        return cities;
     }
-
-    public int getNoCityPopuOfPeopleinAsia(){
+    public ArrayList<City> getCityPopuOfPeopleinEachCountry(){
         // Create string for SQL statement
-        String strSelect = "SELECT * FROM country WHERE country.Continent = 'Asia' ";
-        ArrayList<Country> countries = new ArrayList<Country>();
-        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
-        int CounPeop = 0;
-        for(Country coun:countries){
-            CounPeop = coun.getPopulation() + CounPeop;
-        }
-        return CounPeop;
-    }
-
-    public int getCityPopuOfPeopleinMiddleEast(){
-        // Create string for SQL statement
-        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Region = 'Middle East' ";
+        String strSelect = "SELECT SUM(city.Population) as SumPopulation, country.Continent FROM city, country WHERE city.CountryCode = country.Code group by country.Continent";
         ArrayList<City> cities = new ArrayList<City>();
         setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
-        int CityPeop = 0;
-        for(City city:cities){
-            CityPeop = city.getPopulation() + CityPeop;
+        return cities;
+    }
+     */
+    public void displayCityPopuOfPeopleinEachContinent(ArrayList<City> cities){
+        if(cities == null){
+            System.out.println("There is no data in Arraylist of cities");
+            return;
         }
-        return CityPeop;
-    }
-
-    public int getNoCityPopuOfPeopleinMiddleEast(){
-        // Create string for SQL statement
-        String strSelect = "SELECT * FROM country WHERE country.Region = 'Middle East' ";
-        ArrayList<Country> countries = new ArrayList<Country>();
-        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
-        int CounPeop = 0;
-        for(Country coun:countries){
-            CounPeop = coun.getPopulation() + CounPeop;
-        }
-        return CounPeop;
-    }
-    public int getCityPopuOfPeopleinMyanmar(){
-        // Create string for SQL statement
-        String strSelect = "SELECT * FROM city WHERE city.CountryCode = 'MMR' ";
-        ArrayList<City> cities = new ArrayList<City>();
-        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
-        int CityPeop = 0;
-        for(City city:cities){
-            CityPeop = city.getPopulation() + CityPeop;
-        }
-        System.out.println(CityPeop);
-        return CityPeop;
-    }
-
-    public int getNoCityPopuOfPeopleinMyanmar() {
-        // Create string for SQL statement
-        String strSelect = "SELECT * FROM country WHERE country.Name ='Myanmar' ";
-        ArrayList<Country> countries = new ArrayList<Country>();
-        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
-        int CounPeop = countries.get(0).getPopulation();
-        return CounPeop;
-    }
-    public void displayPopuOfPeopleinAsia(){
-        int cityPeop = getCityPopuOfPeopleinAsia();
-        long noCityPeop = (long)getNoCityPopuOfPeopleinAsia() - (long)cityPeop;
         System.out.println("=======================================================================================================================================");
-        System.out.println("This is the population of people that lives in cities in Asia => " + cityPeop);
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("This is the population of people that does not live in cities in Asia => " + noCityPeop);
-        System.out.println("=======================================================================================================================================");
+        for (City city : cities) {
+            if (city == null)
+                continue;
+            System.out.println("This is the population of people that lives in cities in " + city.getCountryDetail().getContinent() + " => " + city.getCitySumPopulation());
+            System.out.println("This is the population of people that does not live in cities in " + city.getCountryDetail().getContinent() +  " => " + city.getNoCitySumPopulation());
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        }
     }
-
+    /**
     public void displayPopuOfPeopleinMiddleEast(){
         int cityPeop = getCityPopuOfPeopleinMiddleEast();
         long noCityPeop = (long)getNoCityPopuOfPeopleinMiddleEast() - (long)cityPeop;
@@ -488,6 +459,7 @@ public class App {
         //System.out.println("This is the population of people that does not live in cities in Myanmar => " + noCityPeop);
         System.out.println("=======================================================================================================================================");
     }
+*/
     public static void main(String[] args) {
         // Create new Application
         App a = new App();
@@ -634,15 +606,18 @@ public class App {
         //Display cities
         System.out.println("The top N populated capital cities in a region where N is provided by the user.");
         a.displayCity(topcapitalcitypopuinMiddleEast);
+ */
 
+        ArrayList<City> sumpopuineachcontinent = a.getCityPopuOfPeopleinEachContinent();
         System.out.println("The population of people, people living in cities, and people not living in cities in each continent.");
-        a.displayPopuOfPeopleinAsia();
+        a.displayCityPopuOfPeopleinEachContinent(sumpopuineachcontinent);
 
         System.out.println("The population of people, people living in cities, and people not living in cities in each region.");
-        a.displayPopuOfPeopleinMiddleEast();
-*/
+        //a.displayPopuOfPeopleinMiddleEast();
+
         System.out.println("The population of people, people living in cities, and people not living in cities in each country.");
-        a.displayPopuOfPeopleinMyanmar();
+        //a.displayPopuOfPeopleinMyanmar();
+
         System.out.println("HeinThu");
         // Disconnect from database
         a.disconnect();
