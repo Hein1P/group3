@@ -100,18 +100,6 @@ public class App {
             System.out.println("Failed to get city details");
         }
     }
-    /**
-     * * Get the country name by population in descenting order in the world.
-     */
-    public ArrayList<Country> getCountryPopuinWorld() {
-
-            // Create string for SQL statement
-            String strSelect = "SELECT Code, country.Name, Population, Continent, Region, Capital FROM country ORDER BY country.Population DESC";
-            ArrayList<Country> countries = new ArrayList<Country>();
-            setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
-            return countries;
-    }
-
 
     public void displayCountry(ArrayList<Country> countries) {
         if(countries == null){
@@ -119,12 +107,14 @@ public class App {
             return;
         }
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-25s %-25s %-25s", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
+        System.out.println(String.format("%-10s %-10s %-45s %-20s %-25s %-25s %-25s", "No", "Code No", "Country Name", "Population", "Continent", "Region", "Capital"));
         //Loop all the country get from countries list
-        for (Country coun : countries) {
+
+        for (Country coun : countries)  {
             if (coun == null)
                 continue;
-            String coun_string = String.format("%-10s %-45s %-20s %-25s %-25s %-25s", coun.getCode(), coun.getName(),coun.getPopulation(), coun.getContinent(), coun.getRegion(), coun.getCapital());
+            int i = countries.indexOf(coun) +1;
+            String coun_string = String.format("%-10s %-10s %-45s %-20s %-25s %-25s %-25s", i, coun.getCode(), coun.getName(),coun.getPopulation(), coun.getContinent(), coun.getRegion(), coun.getCapital());
             System.out.println(coun_string);
         }
         System.out.println("=======================================================================================================================================");
@@ -135,16 +125,29 @@ public class App {
             return;
         }
         System.out.println("=======================================================================================================================================");
-        System.out.println(String.format("%-10s %-45s %-20s %-20s %-20s", "ID", "City Name", "Population", "District", "Country Name"));
+        System.out.println(String.format("%-10s %-10s %-45s %-20s %-20s %-20s","No", "ID", "City Name", "Population", "District", "Country Name"));
         //Loop all the City get from cities list
         for (City city : cities) {
             if (city == null)
                 continue;
-            String city_string = String.format("%-10s %-45s %-20s %-20s %-20s", city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
+            int i = cities.indexOf(city) +1;
+            String city_string = String.format("%-10s %-10s %-45s %-20s %-20s %-20s", i, city.getID(), city.getName(), city.getPopulation(), city.getDistrict(), city.getCountryDetail().getName());
             System.out.println(city_string);
         }
         System.out.println("=======================================================================================================================================");
     }
+    /**
+     * * Get the country name by population in descenting order in the world.
+     */
+    public ArrayList<Country> getCountryPopuinWorld() {
+
+        // Create string for SQL statement
+        String strSelect = "SELECT Code, country.Name, Population, Continent, Region, Capital FROM country ORDER BY country.Population DESC";
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
+        return countries;
+    }
+
     /**
      * * Get the country name by population in descenting order in asia.
      */
@@ -324,7 +327,167 @@ public class App {
         return cities;
     }
 
+    /**
+     * * Get the Capital cities name by population in descenting order in world.
+     */
+    public ArrayList<City> getCapitalCityPopuinWorld() {
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.ID = country.Capital ORDER BY city.Population DESC";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
+    }
+    /**
+     * * Get the capital cities name by population in descenting order in a Asia.
+     */
+    public ArrayList<City> getCapitalCityPopuinAsia() {
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.ID = country.Capital AND country.Continent = 'Asia' ORDER BY city.Population DESC";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
+    }
 
+
+    /**
+     * * Get the capital cities name by population in descenting order in middle east.
+     */
+    public ArrayList<City> getCapitalCityPopuinMiddleEast() {
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.ID = country.Capital AND country.Region = 'Middle East' ORDER BY city.Population DESC";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
+    }
+    /**
+     * * Get Top Capital cities name by population in descenting order in world.
+     */
+    public ArrayList<City> getTopCapitalCityPopuinWorld(int n) {
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.ID = country.Capital ORDER BY city.Population DESC LIMIT " + n;
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
+    }
+    /**
+     * * Get Top capital cities name by population in descenting order in a Asia.
+     */
+    public ArrayList<City> getTopCapitalCityPopuinAsia(int n) {
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.ID = country.Capital AND country.Continent = 'Asia' ORDER BY city.Population DESC LIMIT " + n;
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
+    }
+
+
+    /**
+     * * Get Top capital cities name by population in descenting order in middle east.
+     */
+    public ArrayList<City> getTopCapitalCityPopuinMiddleEast(int n) {
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.ID = country.Capital AND country.Region = 'Middle East' ORDER BY city.Population DESC LIMIT " + n;
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
+    }
+
+    public int getCityPopuOfPeopleinAsia(){
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Continent= 'Asia' ";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        int CityPeop = 0;
+        for(City city:cities){
+            CityPeop = city.getPopulation() + CityPeop;
+        }
+        return CityPeop;
+    }
+
+    public int getNoCityPopuOfPeopleinAsia(){
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM country WHERE country.Continent = 'Asia' ";
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
+        int CounPeop = 0;
+        for(Country coun:countries){
+            CounPeop = coun.getPopulation() + CounPeop;
+        }
+        return CounPeop;
+    }
+
+    public int getCityPopuOfPeopleinMiddleEast(){
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city, country WHERE city.CountryCode = country.Code AND country.Region = 'Middle East' ";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        int CityPeop = 0;
+        for(City city:cities){
+            CityPeop = city.getPopulation() + CityPeop;
+        }
+        return CityPeop;
+    }
+
+    public int getNoCityPopuOfPeopleinMiddleEast(){
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM country WHERE country.Region = 'Middle East' ";
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
+        int CounPeop = 0;
+        for(Country coun:countries){
+            CounPeop = coun.getPopulation() + CounPeop;
+        }
+        return CounPeop;
+    }
+    public int getCityPopuOfPeopleinMyanmar(){
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM city WHERE city.CountryCode = 'MMR' ";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        int CityPeop = 0;
+        for(City city:cities){
+            CityPeop = city.getPopulation() + CityPeop;
+        }
+        System.out.println(CityPeop);
+        return CityPeop;
+    }
+
+    public int getNoCityPopuOfPeopleinMyanmar() {
+        // Create string for SQL statement
+        String strSelect = "SELECT * FROM country WHERE country.Name ='Myanmar' ";
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryDataFromQueryResult(countries, getDataFromQuery(strSelect));
+        int CounPeop = countries.get(0).getPopulation();
+        return CounPeop;
+    }
+    public void displayPopuOfPeopleinAsia(){
+        int cityPeop = getCityPopuOfPeopleinAsia();
+        long noCityPeop = (long)getNoCityPopuOfPeopleinAsia() - (long)cityPeop;
+        System.out.println("=======================================================================================================================================");
+        System.out.println("This is the population of people that lives in cities in Asia => " + cityPeop);
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("This is the population of people that does not live in cities in Asia => " + noCityPeop);
+        System.out.println("=======================================================================================================================================");
+    }
+
+    public void displayPopuOfPeopleinMiddleEast(){
+        int cityPeop = getCityPopuOfPeopleinMiddleEast();
+        long noCityPeop = (long)getNoCityPopuOfPeopleinMiddleEast() - (long)cityPeop;
+        System.out.println("=======================================================================================================================================");
+        System.out.println("This is the population of people that lives in cities in Middle East => " + cityPeop);
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("This is the population of people that does not live in cities in Middle East => " + noCityPeop);
+        System.out.println("=======================================================================================================================================");
+    }
+    public void displayPopuOfPeopleinMyanmar(){
+        int cityPeop = getCityPopuOfPeopleinMyanmar();
+        //long noCityPeop = (long)getNoCityPopuOfPeopleinMyanmar() - (long)cityPeop;
+        System.out.println("=======================================================================================================================================");
+        System.out.println("This is the population of people that lives in cities in Myanmar => " + cityPeop);
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        //System.out.println("This is the population of people that does not live in cities in Myanmar => " + noCityPeop);
+        System.out.println("=======================================================================================================================================");
+    }
     public static void main(String[] args) {
         // Create new Application
         App a = new App();
@@ -338,7 +501,7 @@ public class App {
         {
             a.connect(args[0]);
         }
-
+/**
         // Get Country list in the world
         ArrayList<Country> countries = a.getCountryPopuinWorld();
         // Display countries
@@ -409,35 +572,78 @@ public class App {
         // Get Top City list in world by user input
         ArrayList<City> topcitiesinworld = a.getTopCityPopuinWorld(10);
         // Display Cities
-        System.out.println("All the cities in the world organised by largest population to smallest.");
+        System.out.println("The top N populated cities in the world where N is provided by the user.");
         a.displayCity(topcitiesinworld);
 
         //Get Top City list in asia by user input
         ArrayList<City> topcitiesinasia = a.getTopCityPopuinAsia(10);
         // Display Cities
-        System.out.println("All the cities in the asia organised by largest population to smallest.");
+        System.out.println("The top N populated cities in a continent where N is provided by the user.");
         a.displayCity(topcitiesinasia);
 
 
         //Get Top City list in caribbean by user input
         ArrayList<City> topcitiesincaribbean = a.getTopCityPopuinCaribbean(10);
         // Display Cities
-        System.out.println("All the cities in the caribbean organised by largest population to smallest.");
+        System.out.println("The top N populated cities in a region where N is provided by the user.");
         a.displayCity(topcitiesincaribbean);
 
         // Get Top City list in myanmar by user input
         ArrayList<City> topcitiesinmyanmar = a.getTopCityPopuinMyanmar(10);
         // Display Cities
-        System.out.println("All the cities in the myanmar organised by largest population to smallest.");
+        System.out.println("The top N populated cities in a country where N is provided by the user.");
         a.displayCity(topcitiesinmyanmar);
 
         // Get Top City list in virginia by user input
         ArrayList<City> topcitiesinvirginia = a.getTopCityPopuinVirginia(10);
         // Display Cities
-        System.out.println("All the cities in the virginia organised by largest population to smallest.");
+        System.out.println("The top N populated cities in a district where N is provided by the user.");
         a.displayCity(topcitiesinvirginia);
 
-        System.out.println("Hein");
+        // Get City list in the world
+        ArrayList<City> capitalcitypopuinworld = a.getCapitalCityPopuinWorld();
+        //Display cities
+        System.out.println("All the capital cities in the world organised by largest population to smallest.");
+        a.displayCity(capitalcitypopuinworld);
+
+        // Get City list in asia
+        ArrayList<City> capitalcitypopuinasia = a.getCapitalCityPopuinAsia();
+        //Display cities
+        System.out.println("All the capital cities in a continent organised by largest population to smallest.");
+        a.displayCity(capitalcitypopuinasia);
+
+        // Get City list in middle east
+        ArrayList<City> capitalcitypopuinMiddleEast = a.getCapitalCityPopuinMiddleEast();
+        //Display cities
+        System.out.println("All the capital cities in a region organised by largest to smallest.");
+        a.displayCity(capitalcitypopuinMiddleEast);
+        // Get Top City List in the world
+        ArrayList<City> topcapitalcitypopuinworld = a.getTopCapitalCityPopuinWorld(10);
+        //Display cities
+        System.out.println("The top N populated capital cities in the world where N is provided by the user.");
+        a.displayCity(topcapitalcitypopuinworld);
+
+        // Get Top City List in asia
+        ArrayList<City> topcapitalcitypopuinasia = a.getTopCapitalCityPopuinAsia(10);
+        //Display cities
+        System.out.println("The top N populated capital cities in a continent where N is provided by the user.");
+        a.displayCity(topcapitalcitypopuinasia);
+
+        // Get Top City List in middle east
+        ArrayList<City> topcapitalcitypopuinMiddleEast = a.getTopCapitalCityPopuinMiddleEast(10);
+        //Display cities
+        System.out.println("The top N populated capital cities in a region where N is provided by the user.");
+        a.displayCity(topcapitalcitypopuinMiddleEast);
+
+        System.out.println("The population of people, people living in cities, and people not living in cities in each continent.");
+        a.displayPopuOfPeopleinAsia();
+
+        System.out.println("The population of people, people living in cities, and people not living in cities in each region.");
+        a.displayPopuOfPeopleinMiddleEast();
+*/
+        System.out.println("The population of people, people living in cities, and people not living in cities in each country.");
+        a.displayPopuOfPeopleinMyanmar();
+        System.out.println("HeinThu");
         // Disconnect from database
         a.disconnect();
     }
