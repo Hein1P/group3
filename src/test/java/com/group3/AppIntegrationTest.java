@@ -255,5 +255,90 @@ public class AppIntegrationTest
         assertEquals(city, 10);
     }
 
+    @Test
+    void testgetCapitalCityPopuinWorld()
+    {
+        City city =app.getCapitalCityPopuinWorld().get(0);
+        assertEquals(city.getID(), 2331);
+        assertEquals(city.getName(), "Seoul");
+        assertEquals(city.getPopulation(), 9981619);
+        assertEquals(city.getDistrict(), "South Korea");
+        assertEquals(city.getCountryDetail().getName(), "South Korea");
+    }
+
+    @Test
+    void testgetCapitalCityPopuinAsia()
+    {
+        City city =app.getCapitalCityPopuinAsia().get(0);
+        assertEquals(city.getID(), 2331);
+        assertEquals(city.getName(), "Seoul");
+        assertEquals(city.getPopulation(), 9981619);
+        assertEquals(city.getDistrict(), "South Korea");
+        assertEquals(city.getCountryDetail().getName(), "South Korea");
+    }
+    @Test
+    void testgetCapitalCityPopuinMiddleEast()
+    {
+        City city =app.getCapitalCityPopuinMiddleEast().get(0);
+        assertEquals(city.getID(), 1365);
+        assertEquals(city.getName(), "Baghdad");
+        assertEquals(city.getPopulation(), 4336000);
+        assertEquals(city.getDistrict(), "Iraq");
+        assertEquals(city.getCountryDetail().getName(), "Baghdad");
+    }
+
+    @Test
+    void testgetTopCapitalCityPopuinWorld()
+    {
+        City city =app.getTopCapitalCityPopuinWorld(10).get(0);
+        assertEquals(city.getID(), 2331);
+        assertEquals(city.getName(), "Seoul");
+        assertEquals(city.getPopulation(), 9981619);
+        assertEquals(city.getDistrict(), "South Korea");
+        assertEquals(city.getCountryDetail().getName(), "South Korea");
+
+    }
+    @Test
+    void testgetTopCapitalCityPopuinWorldsize()
+    {
+        int city =app.getTopCapitalCityPopuinWorld(10).size();
+        assertEquals(city, 10);
+    }
+
+
+    @Test
+    void testgetTopCapitalCityPopuinAsia()
+    {
+        City city =app.getTopCapitalCityPopuinAsia(10).get(0);
+        assertEquals(city.getID(), 2331);
+        assertEquals(city.getName(), "Seoul");
+        assertEquals(city.getPopulation(), 9981619);
+        assertEquals(city.getDistrict(), "South Korea");
+        assertEquals(city.getCountryDetail().getName(), "South Korea");
+    }
+    @Test
+    void testgetTopCapitalCityPopuinAsiasize()
+    {
+        int city =app.getTopCityPopuinAsia(10).size();
+        assertEquals(city, 10);
+    }
+
+    @Test
+    void testgetTopCapitalCityPopuinMiddleEast()
+    {
+        City city =app.getTopCapitalCityPopuinMiddleEast(10).get(0);
+        assertEquals(city.getID(), 1365);
+        assertEquals(city.getName(), "Baghdad");
+        assertEquals(city.getPopulation(), 4336000);
+        assertEquals(city.getDistrict(), "Iraq");
+        assertEquals(city.getCountryDetail().getName(), "Baghdad");
+    }
+    @Test
+    void testgetTopCapitalCityPopuinMiddleEastsize()
+    {
+        int city =app.getTopCapitalCityPopuinMiddleEast(10).size();
+        assertEquals(city, 10);
+    }
+
 
 }
