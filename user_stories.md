@@ -32,21 +32,21 @@
 
 16. As a Contributor I want to "show top N populated cities in the district that provided by the user" so that the organization can look only the top populated cities where the user provided in the district.
 
-17. As a Contributor I want to *display all the countries in the world ordered by largest population to smallest so that the organization can view all the countries in the world with descending order.
+17. As a Contributor I want to "display all the countries in the world ordered by largest population to smallest" so that the organization can view all the countries in the world with descending order.
 
-18. As a Contributor I want to "all capital in the continent from largest to smallest population" so that the organization can view the capital cities in the continent by largest to smallest population.
+18. As a Contributor I want to "display all capital in the continent from largest to smallest population" so that the organization can view the capital cities in the continent by largest to smallest population.
 
-19. As a Contributor I want to "all capital in the region from largest to smallest population" so that the organization can view the capital cities in the region by largest to smallest population.
+19. As a Contributor I want to "display all capital in the region from largest to smallest population" so that the organization can view the capital cities in the region by largest to smallest population.
 
-20. As a Contributor I want to "the top N populated capital cities in world where user provided" so that the organization can view the top N populated capital cities in the world provided by user.
+20. As a Contributor I want to "display the top N populated capital cities in world where user provided" so that the organization can view the top N populated capital cities in the world provided by user.
 
-21. As a Contributor I want to "the top N populated capital cities in continent where user provided" so that the organization can view the top N populated capital cities in the continent provided by user.
+21. As a Contributor I want to "display the top N populated capital cities in continent where user provided" so that the organization can view the top N populated capital cities in the continent provided by user.
 
-22. As a Contributor I want to "the top N populated capital cities in region where user provided" so that the organization can view the top N populated capital cities in the region provided by user.
+22. As a Contributor I want to "display the top N populated capital cities in region where user provided" so that the organization can view the top N populated capital cities in the region provided by user.
 
-23. As a Contributor I want to "the population of people who living in cities and not living in cities in each continent" so that the organization can view the population of people from cities who is not live or live in each continent.
+23. As a Contributor I want to "display the population of people who living in cities and not living in cities in each continent" so that the organization can view the population of people from cities who is not live or live in each continent.
 
-24. As a Contributor I want to "the population of people who living in cities and not living in cities in each region" so that the organization can view the population of people from cities who is not live or live in each region.
+24. As a Contributor I want to "display the population of people who living in cities and not living in cities in each region" so that the organization can view the population of people from cities who is not live or live in each region.
 
-25. As a Contributor I want to "the population of people who living in cities and not living in cities in each country" so that the organization can view the population of people from cities who is not live or live in each country.
+25. As a Contributor I want to "display the population of people who living in cities and not living in cities in each country" so that the organization can view the population of people from cities who is not live or live in each country.
 
