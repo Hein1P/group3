@@ -647,6 +647,7 @@ public class App {
         System.out.println("The top N populated capital cities in a region where N is provided by the user.");
         a.displayCity(topcapitalcitypopuinMiddleEast);
 
+        //Population of Continent
         ArrayList<City> sumpopuineachcontinent = a.getCityPopuOfPeopleinEachContinent();
         System.out.println("The population of people, people living in cities, and people not living in cities in each continent.");
         a.displayCityPopuOfPeopleinEachContinent(sumpopuineachcontinent);
