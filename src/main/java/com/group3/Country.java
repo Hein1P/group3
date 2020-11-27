@@ -28,8 +28,13 @@ public class Country {
      */
     private int Capital;
 
-    public Country(String continent) {
+    public Country(String name, String continent) {
+        Name = name;
         Continent = continent;
+    }
+
+    public Country(String region) {
+        Region = region;
     }
 
     public Country(String code, String name, String continent, String region, int population, int capital) {

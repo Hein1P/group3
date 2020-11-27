@@ -25,28 +25,32 @@ public class City {
     /**
      * City's Sum Population
      */
-    private long CitySumPopulation;
-
+    private String CityPopulationPercent;
     /**
-     * No City's Sum Population
+     *No City's Sum Population
      */
-    private long NoCitySumPopulation;
+    private String NoCityPopulationPercent;
+    /**
+     * Country's Sum Population
+     */
+    private long CountrySumPopulation;
+
 
     /**
      * City's Country
      */
     private Country CountryDetail;
 
-    public City(long citySumPopulation, long noCitySumPopulation, Country countryDetail) {
-        CitySumPopulation = citySumPopulation;
-        NoCitySumPopulation = noCitySumPopulation;
+    public City(String cityPopulationPercent, String noCityPopulationPercent, long countrySumPopulation, Country countryDetail) {
+        CityPopulationPercent = cityPopulationPercent;
+        NoCityPopulationPercent = noCityPopulationPercent;
+        CountrySumPopulation = countrySumPopulation;
         CountryDetail = countryDetail;
     }
 
     public City(int ID, String name, int population, String district, Country countryDetail) {
         this.ID = ID;
         Name = name;
-        //CountryCode = countryCode;
         District = district;
         Population = population;
         CountryDetail = countryDetail;
@@ -101,19 +105,27 @@ public class City {
         CountryDetail = countryDetail;
     }
 
-    public long getCitySumPopulation() {
-        return CitySumPopulation;
+    public String getCityPopulationPercent() {
+        return CityPopulationPercent;
     }
 
-    public void setCitySumPopulation(long citySumPopulation) {
-        CitySumPopulation = citySumPopulation;
+    public void setCityPopulationPercent(String cityPopulationPercent) {
+        CityPopulationPercent = cityPopulationPercent;
     }
 
-    public long getNoCitySumPopulation() {
-        return NoCitySumPopulation;
+    public String getNoCityPopulationPercent() {
+        return NoCityPopulationPercent;
     }
 
-    public void setNoCitySumPopulation(long noCitySumPopulation) {
-        NoCitySumPopulation = noCitySumPopulation;
+    public void setNoCityPopulationPercent(String noCityPopulationPercent) {
+        NoCityPopulationPercent = noCityPopulationPercent;
+    }
+
+    public long getCountrySumPopulation() {
+        return CountrySumPopulation;
+    }
+
+    public void setCountrySumPopulation(long countrySumPopulation) {
+        CountrySumPopulation = countrySumPopulation;
     }
 }

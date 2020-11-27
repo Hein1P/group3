@@ -12,6 +12,7 @@ public class AppIntegrationTest
 {
     static App app;
 
+
     @BeforeAll
     static void init()
     {
@@ -262,7 +263,7 @@ public class AppIntegrationTest
         assertEquals(city.getID(), 2331);
         assertEquals(city.getName(), "Seoul");
         assertEquals(city.getPopulation(), 9981619);
-        assertEquals(city.getDistrict(), "South Korea");
+        assertEquals(city.getDistrict(), "Seoul");
         assertEquals(city.getCountryDetail().getName(), "South Korea");
     }
 
@@ -273,7 +274,7 @@ public class AppIntegrationTest
         assertEquals(city.getID(), 2331);
         assertEquals(city.getName(), "Seoul");
         assertEquals(city.getPopulation(), 9981619);
-        assertEquals(city.getDistrict(), "South Korea");
+        assertEquals(city.getDistrict(), "Seoul");
         assertEquals(city.getCountryDetail().getName(), "South Korea");
     }
     @Test
@@ -283,8 +284,8 @@ public class AppIntegrationTest
         assertEquals(city.getID(), 1365);
         assertEquals(city.getName(), "Baghdad");
         assertEquals(city.getPopulation(), 4336000);
-        assertEquals(city.getDistrict(), "Iraq");
-        assertEquals(city.getCountryDetail().getName(), "Baghdad");
+        assertEquals(city.getDistrict(), "Baghdad");
+        assertEquals(city.getCountryDetail().getName(), "Iraq");
     }
 
     @Test
@@ -294,7 +295,7 @@ public class AppIntegrationTest
         assertEquals(city.getID(), 2331);
         assertEquals(city.getName(), "Seoul");
         assertEquals(city.getPopulation(), 9981619);
-        assertEquals(city.getDistrict(), "South Korea");
+        assertEquals(city.getDistrict(), "Seoul");
         assertEquals(city.getCountryDetail().getName(), "South Korea");
 
     }
@@ -313,7 +314,7 @@ public class AppIntegrationTest
         assertEquals(city.getID(), 2331);
         assertEquals(city.getName(), "Seoul");
         assertEquals(city.getPopulation(), 9981619);
-        assertEquals(city.getDistrict(), "South Korea");
+        assertEquals(city.getDistrict(), "Seoul");
         assertEquals(city.getCountryDetail().getName(), "South Korea");
     }
     @Test
@@ -330,8 +331,8 @@ public class AppIntegrationTest
         assertEquals(city.getID(), 1365);
         assertEquals(city.getName(), "Baghdad");
         assertEquals(city.getPopulation(), 4336000);
-        assertEquals(city.getDistrict(), "Iraq");
-        assertEquals(city.getCountryDetail().getName(), "Baghdad");
+        assertEquals(city.getDistrict(), "Baghdad");
+        assertEquals(city.getCountryDetail().getName(), "Iraq");
     }
     @Test
     void testgetTopCapitalCityPopuinMiddleEastsize()
@@ -339,6 +340,31 @@ public class AppIntegrationTest
         int city =app.getTopCapitalCityPopuinMiddleEast(10).size();
         assertEquals(city, 10);
     }
-
-
+    @Test
+    void testgetCityPopuOfPeopleinEachContinent()
+    {
+        City city = app.getCityPopuOfPeopleinEachContinent().get(0);
+        assertEquals(city.getCountryDetail().getContinent(), "Asia");
+        assertEquals(city.getCountrySumPopulation(), Long.valueOf(900937599400L));
+        assertEquals(city.getCityPopulationPercent(), "0.08%");
+        assertEquals(city.getNoCityPopulationPercent(), "99.92%");
+    }
+    @Test
+    void testgetCityPopuOfPeopleinEachRegion()
+    {
+        City city = app.getCityPopuOfPeopleinEachRegion().get(0);
+        assertEquals(city.getCountryDetail().getRegion(), "Southern and Central Asia");
+        assertEquals(city.getCountrySumPopulation(), Long.valueOf(363665421000L));
+        assertEquals(city.getCityPopulationPercent(), "0.06%");
+        assertEquals(city.getNoCityPopulationPercent(), "99.94%");
+    }
+    @Test
+    void testgetCityPopuOfPeopleinEachCountry()
+    {
+        City city = app.getCityPopuOfPeopleinEachCountry().get(0);
+        assertEquals(city.getCountryDetail().getName(), "Afghanistan");
+        assertEquals(city.getCountrySumPopulation(), Long.valueOf(22720000L));
+        assertEquals(city.getCityPopulationPercent(), "10.26%");
+        assertEquals(city.getNoCityPopulationPercent(), "89.74%");
+    }
 }

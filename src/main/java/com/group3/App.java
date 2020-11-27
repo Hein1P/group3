@@ -93,7 +93,7 @@ public class App {
     void setCityDataFromQueryResult(ArrayList<City> cities, ResultSet rset) {
         try{
             while(rset.next()) {
-                cities.add(new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), new Country(rset.getString("country.name"))));
+                cities.add(new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), new Country(rset.getString("country.name"), null)));
 
             }
         }catch(Exception e) {
@@ -102,10 +102,32 @@ public class App {
         }
     }
     /** Setting the City data to the result */
-    void setCitySumDataFromQueryResult(ArrayList<City> cities, ResultSet rset) {
+    void setCityInContinentDataFromQueryResult(ArrayList<City> cities, ResultSet rset) {
         try{
             while(rset.next()) {
-                cities.add(new City(rset.getLong("CitySumPopulation"),rset.getLong("NoCityPopulation"), new Country(rset.getString("Continent"))));
+                cities.add(new City(rset.getString("CityPopulationPercent"),rset.getString("NoCityPopulationPercent"), rset.getLong("countrySumPopulation"),new Country(null,rset.getString("Continent"))));
+            }
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+        }
+    }
+    /** Setting the City data to the result */
+    void setCityInRegionDataFromQueryResult(ArrayList<City> cities, ResultSet rset) {
+        try{
+            while(rset.next()) {
+                cities.add(new City(rset.getString("CityPopulationPercent"),rset.getString("NoCityPopulationPercent"), rset.getLong("countrySumPopulation"),new Country(rset.getString("Region"))));
+            }
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+        }
+    }
+    /** Setting the City data to the result */
+    void setCityInCountryDataFromQueryResult(ArrayList<City> cities, ResultSet rset) {
+        try{
+            while(rset.next()) {
+                cities.add(new City(rset.getString("CityPopulationPercent"),rset.getString("NoCityPopulationPercent"), rset.getLong("countrySumPopulation"),new Country(rset.getString("Name"),null)));
             }
         }catch(Exception e) {
             System.out.println(e.getMessage());
@@ -405,27 +427,28 @@ public class App {
 
     public ArrayList<City> getCityPopuOfPeopleinEachContinent(){
         // Create string for SQL statement
-        String strSelect = "SELECT SUM(city.Population) as CitySumPopulation, country.Continent, SUM(country.Population) - SUM(city.Population) as NoCityPopulation FROM city, country WHERE city.CountryCode = country.Code group by country.Continent";
+        String strSelect = "SELECT concat(round((SUM(city.Population) / SUM(country.Population) * 100),2),'%') as CityPopulationPercent , country.Continent, concat(100-round((SUM(city.Population) / SUM(country.Population) * 100),2),'%')  as NoCityPopulationPercent, SUM(country.Population) as countrySumPopulation FROM city, country WHERE city.CountryCode = country.Code group by country.Continent";
         ArrayList<City> cities = new ArrayList<City>();
-        setCitySumDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        setCityInContinentDataFromQueryResult(cities, getDataFromQuery(strSelect));
         return cities;
     }
-    /**
+
     public ArrayList<City> getCityPopuOfPeopleinEachRegion(){
         // Create string for SQL statement
-        String strSelect = "SELECT SUM(city.Population) as SumPopulation, country.Continent FROM city, country WHERE city.CountryCode = country.Code group by country.Continent";
+        String strSelect = "SELECT concat(round((SUM(city.Population) / SUM(country.Population) * 100),2),'%') as CityPopulationPercent , country.Region, concat(100-round((SUM(city.Population) / SUM(country.Population) * 100),2),'%')  as NoCityPopulationPercent, SUM(country.Population) as countrySumPopulation FROM city, country WHERE city.CountryCode = country.Code group by country.Region";
         ArrayList<City> cities = new ArrayList<City>();
-        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        setCityInRegionDataFromQueryResult(cities, getDataFromQuery(strSelect));
         return cities;
     }
+
     public ArrayList<City> getCityPopuOfPeopleinEachCountry(){
         // Create string for SQL statement
-        String strSelect = "SELECT SUM(city.Population) as SumPopulation, country.Continent FROM city, country WHERE city.CountryCode = country.Code group by country.Continent";
+        String strSelect = "SELECT concat(round((SUM(city.Population) / country.Population * 100),2),'%') as CityPopulationPercent , country.Name, concat(100-round((SUM(city.Population) / country.Population * 100),2),'%')  as NoCityPopulationPercent, country.Population as countrySumPopulation FROM city, country WHERE city.CountryCode = country.Code group by country.Population, country.Name\n";
         ArrayList<City> cities = new ArrayList<City>();
-        setCityDataFromQueryResult(cities, getDataFromQuery(strSelect));
+        setCityInCountryDataFromQueryResult(cities, getDataFromQuery(strSelect));
         return cities;
     }
-     */
+
     public void displayCityPopuOfPeopleinEachContinent(ArrayList<City> cities){
         if(cities == null){
             System.out.println("There is no data in Arraylist of cities");
@@ -435,31 +458,48 @@ public class App {
         for (City city : cities) {
             if (city == null)
                 continue;
-            System.out.println("This is the population of people that lives in cities in " + city.getCountryDetail().getContinent() + " => " + city.getCitySumPopulation());
-            System.out.println("This is the population of people that does not live in cities in " + city.getCountryDetail().getContinent() +  " => " + city.getNoCitySumPopulation());
+            System.out.println("The name of the continent is " + city.getCountryDetail().getContinent());
+            System.out.println("The total population of " + city.getCountryDetail().getContinent() +" is "+ city.getCountrySumPopulation());
+            System.out.println("This is the population of people that lives in cities in " + city.getCountryDetail().getContinent() + " => " + city.getCityPopulationPercent());
+            System.out.println("This is the population of people that does not live in cities in " + city.getCountryDetail().getContinent() +  " => " + city.getNoCityPopulationPercent());
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
-    /**
-    public void displayPopuOfPeopleinMiddleEast(){
-        int cityPeop = getCityPopuOfPeopleinMiddleEast();
-        long noCityPeop = (long)getNoCityPopuOfPeopleinMiddleEast() - (long)cityPeop;
+
+    public void displayPopuOfPeopleinEachRegion(ArrayList<City> cities){
+        if(cities == null){
+            System.out.println("There is no data in Arraylist of cities");
+            return;
+        }
         System.out.println("=======================================================================================================================================");
-        System.out.println("This is the population of people that lives in cities in Middle East => " + cityPeop);
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("This is the population of people that does not live in cities in Middle East => " + noCityPeop);
-        System.out.println("=======================================================================================================================================");
+        for (City city : cities) {
+            if (city == null)
+                continue;
+
+            System.out.println("The name of the Region is " + city.getCountryDetail().getRegion());
+            System.out.println("The total population of " + city.getCountryDetail().getRegion() +" is "+ city.getCountrySumPopulation());
+            System.out.println("This is the population of people that lives in cities in " + city.getCountryDetail().getRegion() + " => " + city.getCityPopulationPercent());
+            System.out.println("This is the population of people that does not live in cities in " + city.getCountryDetail().getRegion() +  " => " + city.getNoCityPopulationPercent());
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        }
     }
-    public void displayPopuOfPeopleinMyanmar(){
-        int cityPeop = getCityPopuOfPeopleinMyanmar();
-        //long noCityPeop = (long)getNoCityPopuOfPeopleinMyanmar() - (long)cityPeop;
+    public void displayPopuOfPeopleinEachCountry(ArrayList<City> cities){
+        if(cities == null){
+            System.out.println("There is no data in Arraylist of cities");
+            return;
+        }
         System.out.println("=======================================================================================================================================");
-        System.out.println("This is the population of people that lives in cities in Myanmar => " + cityPeop);
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-        //System.out.println("This is the population of people that does not live in cities in Myanmar => " + noCityPeop);
-        System.out.println("=======================================================================================================================================");
+        for (City city : cities) {
+            if (city == null)
+                continue;
+
+            System.out.println("The name of the Country is " + city.getCountryDetail().getName());
+            System.out.println("The total population of " + city.getCountryDetail().getName() +" is "+ city.getCountrySumPopulation());
+            System.out.println("This is the population of people that lives in cities in " + city.getCountryDetail().getName() + " => " + city.getCityPopulationPercent());
+            System.out.println("This is the population of people that does not live in cities in " + city.getCountryDetail().getName() +  " => " + city.getNoCityPopulationPercent());
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        }
     }
-*/
     public static void main(String[] args) {
         // Create new Application
         App a = new App();
@@ -473,7 +513,7 @@ public class App {
         {
             a.connect(args[0]);
         }
-/**
+
         // Get Country list in the world
         ArrayList<Country> countries = a.getCountryPopuinWorld();
         // Display countries
@@ -606,17 +646,18 @@ public class App {
         //Display cities
         System.out.println("The top N populated capital cities in a region where N is provided by the user.");
         a.displayCity(topcapitalcitypopuinMiddleEast);
- */
 
         ArrayList<City> sumpopuineachcontinent = a.getCityPopuOfPeopleinEachContinent();
         System.out.println("The population of people, people living in cities, and people not living in cities in each continent.");
         a.displayCityPopuOfPeopleinEachContinent(sumpopuineachcontinent);
 
+        ArrayList<City> sumpopuineachregion = a.getCityPopuOfPeopleinEachRegion();
         System.out.println("The population of people, people living in cities, and people not living in cities in each region.");
-        //a.displayPopuOfPeopleinMiddleEast();
+        a.displayPopuOfPeopleinEachRegion(sumpopuineachregion);
 
+        ArrayList<City> sumpopuineachcountry = a.getCityPopuOfPeopleinEachCountry();
         System.out.println("The population of people, people living in cities, and people not living in cities in each country.");
-        //a.displayPopuOfPeopleinMyanmar();
+        a.displayPopuOfPeopleinEachCountry(sumpopuineachcountry);
 
         System.out.println("HeinThu");
         // Disconnect from database

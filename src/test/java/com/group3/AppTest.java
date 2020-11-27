@@ -63,12 +63,41 @@ public class AppTest {
     @Test
     void displayCityTestNormal() {
         String countryname = "Myanmar";
-        Country coun = new Country(countryname);
+        Country coun = new Country(countryname,null);
         ArrayList<City> cities = new ArrayList<City>();
         City city = new City(2710, "Rangoon (Yangon)", 3361700, "Rangoon [Yangon]", coun);
         cities.add(city);
         app.displayCity(cities);
 
     }
+    @Test
+    void displayCityPopuOfPeopleinEachContinentTestNull() {
+        app.displayCityPopuOfPeopleinEachContinent(null);
+    }
+
+    @Test
+    void displayCityPopuOfPeopleinEachContinentTestEmpty() {
+        ArrayList<City> cities = new ArrayList<City>();
+        app.displayCityPopuOfPeopleinEachContinent(cities);
+    }
+
+    @Test
+    void displayCityPopuOfPeopleinEachContinentTestEmptyCity() {
+        ArrayList<City> cities = new ArrayList<City>();
+        cities.add(null);
+        app.displayCityPopuOfPeopleinEachContinent(cities);
+    }
+
+    @Test
+    void displayCityPopuOfPeopleinEachContinentTestNormal() {
+        String continent = "Asia";
+        Country coun = new Country(null,continent);
+        ArrayList<City> cities = new ArrayList<City>();
+        City city = new City( "0.08%", "99.92%",Long.valueOf(900937599400L),coun);
+        cities.add(city);
+        app.displayCityPopuOfPeopleinEachContinent(cities);
+
+    }
+
 }
 
