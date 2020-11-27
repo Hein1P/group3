@@ -426,7 +426,7 @@ public class App {
 
     public ArrayList<City> getCityPopuOfPeopleinEachContinent(){
         // Create string for SQL statement
-        String strSelect = "SELECT concat(round((SUM(city.Population) / SUM(country.Population) * 100),2),'%') as CityPopulationPercent , country.Continent, concat(100-round((SUM(city.Population) / SUM(country.Population) * 100),2),'%')  as NoCityPopulationPercent, SUM(country.Population) as countrySumPopulation FROM city, country WHERE city.CountryCode = country.Code group by country.Continent";
+        String strSelect = "SELECT concat(round((SUM(city.Population) / SUM(distinct(country.Population)) * 100),2),'%') as CityPopulationPercent , country.Continent, concat(100-round((SUM(city.Population) / SUM(distinct(country.Population)) * 100),2),'%')  as NoCityPopulationPercent, SUM(distinct(country.Population)) as countrySumPopulation FROM city, country WHERE city.CountryCode = country.Code group by country.Continent\n";
         ArrayList<City> cities = new ArrayList<City>();
         setCityInContinentDataFromQueryResult(cities, getDataFromQuery(strSelect));
         return cities;
@@ -434,7 +434,7 @@ public class App {
 
     public ArrayList<City> getCityPopuOfPeopleinEachRegion(){
         // Create string for SQL statement
-        String strSelect = "SELECT concat(round((SUM(city.Population) / SUM(country.Population) * 100),2),'%') as CityPopulationPercent , country.Region, concat(100-round((SUM(city.Population) / SUM(country.Population) * 100),2),'%')  as NoCityPopulationPercent, SUM(country.Population) as countrySumPopulation FROM city, country WHERE city.CountryCode = country.Code group by country.Region";
+        String strSelect = "SELECT concat(round((SUM(city.Population) / SUM(distinct(country.Population)) * 100),2),'%') as CityPopulationPercent , country.Region, concat(100-round((SUM(city.Population) / SUM(distinct(country.Population)) * 100),2),'%')  as NoCityPopulationPercent, SUM(distinct(country.Population)) as countrySumPopulation FROM city, country WHERE city.CountryCode = country.Code group by country.Region";
         ArrayList<City> cities = new ArrayList<City>();
         setCityInRegionDataFromQueryResult(cities, getDataFromQuery(strSelect));
         return cities;
