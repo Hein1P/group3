@@ -255,7 +255,7 @@ public class AppIntegrationTest
         int city =app.getTopCityPopuinVirginia(10).size();
         assertEquals(city, 10);
     }
-/**
+
     @Test
     void testgetCapitalCityPopuinWorld()
     {
@@ -368,5 +368,5 @@ public class AppIntegrationTest
         assertEquals(city.getCityPopulationPercent(), "10.26%");
         assertEquals(city.getNoCityPopulationPercent(), "89.74%");
     }
-    */
+
 }
