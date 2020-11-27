@@ -32,11 +32,11 @@
 
 16. As a Contributor I want to "show top N populated cities in the district that provided by the user" so that the organization can look only the top populated cities where the user provided in the district.
 
-17. As a Contributor I want to "display all the countries in the world ordered by largest population to smallest" so that the organization can view all the countries in the world with descending order.
+17. As a Contributor I want to "all capital cities in the world from largest to smallest population" so that the organization can view the capital cities in the world by largest to smallest population.
+     
+18. As a Contributor I want to "display all capital cities in the continent from largest to smallest population" so that the organization can view the capital cities in the continent by largest to smallest population.
 
-18. As a Contributor I want to "display all capital in the continent from largest to smallest population" so that the organization can view the capital cities in the continent by largest to smallest population.
-
-19. As a Contributor I want to "display all capital in the region from largest to smallest population" so that the organization can view the capital cities in the region by largest to smallest population.
+19. As a Contributor I want to "display all capital cities in the region from largest to smallest population" so that the organization can view the capital cities in the region by largest to smallest population.
 
 20. As a Contributor I want to "display the top N populated capital cities in world where user provided" so that the organization can view the top N populated capital cities in the world provided by user.
 
