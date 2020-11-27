@@ -1,0 +1,46 @@
+@startuml
+skinparam usecase {
+FontName Aapex
+BackgroundColor Aquamarine
+BorderColor DarkCyan
+ArrowColor DarkCyan
+}
+skinparam actor{
+FontName Aapex
+BackgroundColor Aquamarine
+BorderColor DarkCyan
+}
+left to right direction
+skinparam packageStyle rectangle
+actor User
+rectangle database as "Database"
+rectangle "Code Review 4" {
+usecase UC2 as "Display capital cities in the world organised by largest to smallest population."
+usecase UC3 as "Display capital cities in a continent organised by largest population to smallest."
+usecase UC4 as "Display capital cities in a region organised by largest to smallest."
+usecase UC5 as "Display top populated capital cities in the world provided by user."
+usecase UC6 as "Display top populated capital cities in a continent provided by user."
+usecase UC7 as "Display top populated countries in a region provided by user."
+usecase UC8 as "Display population of people living and not living in cities in each continent."
+usecase UC9 as "Display population of people living and not living in cities in each region."
+usecase UC10 as "Display population of people living and not living in cities in each country."
+User -- UC2
+User -- UC3
+User -- UC4
+User -- UC5
+User -- UC6
+User -- UC7
+User -- UC8
+User -- UC9
+User -- UC10
+}
+UC2 -- database
+UC3 -- database
+UC4 -- database
+UC5 -- database
+UC6 -- database
+UC7 -- database
+UC8 -- database
+UC9 -- database
+UC10 -- database
+@enduml
