@@ -343,18 +343,18 @@ public class AppIntegrationTest
     {
         City city = app.getCityPopuOfPeopleinEachContinent().get(0);
         assertEquals(city.getCountryDetail().getContinent(), "Asia");
-        assertEquals(city.getCountrySumPopulation(), Long.valueOf(900937599400L));
-        assertEquals(city.getCityPopulationPercent(), "0.08%");
-        assertEquals(city.getNoCityPopulationPercent(), "99.92%");
+        assertEquals(city.getCountrySumPopulation(), Long.valueOf(3705025700L));
+        assertEquals(city.getCityPopulationPercent(), "18.83%");
+        assertEquals(city.getNoCityPopulationPercent(), "81.17%");
     }
     @Test
     void testgetCityPopuOfPeopleinEachRegion()
     {
         City city = app.getCityPopuOfPeopleinEachRegion().get(0);
-        assertEquals(city.getCountryDetail().getRegion(), "Southern and Central Asia");
-        assertEquals(city.getCountrySumPopulation(), Long.valueOf(363665421000L));
-        assertEquals(city.getCityPopulationPercent(), "0.06%");
-        assertEquals(city.getNoCityPopulationPercent(), "99.94%");
+        assertEquals(city.getCountryDetail().getRegion(), "Australia and New Zealand");
+        assertEquals(city.getCountrySumPopulation(), Long.valueOf(22753100L));
+        assertEquals(city.getCityPopulationPercent(), "57.85%");
+        assertEquals(city.getNoCityPopulationPercent(), "42.15%");
     }
     @Test
     void testgetCityPopuOfPeopleinEachCountry()
@@ -366,4 +366,55 @@ public class AppIntegrationTest
         assertEquals(city.getNoCityPopulationPercent(), "89.74%");
     }
 
+    @Test
+    void testgetWorldPopulation()
+    {
+        Country coun =app.getWorldPopulation().get(0);
+        assertEquals(coun.getSumPopulation(), Long.valueOf(6078749450L));
+    }
+    @Test
+    void testgetAsiaPopulation()
+    {
+        Country coun =app.getAsiaPopulation().get(0);
+        assertEquals(coun.getSumPopulation(), Long.valueOf(3705025700L));
+        assertEquals(coun.getName(),"Asia");
+    }
+    @Test
+    void testgetSeaPopulation()
+    {
+        Country coun =app.getSeaPopulation().get(0);
+        assertEquals(coun.getSumPopulation(), Long.valueOf(518541000L));
+        assertEquals(coun.getName(),"Southeast Asia");
+    }
+    @Test
+    void testgetMyanmarPopulation()
+    {
+        Country coun =app.getMyanmarPopulation().get(0);
+        assertEquals(coun.getSumPopulation(), Long.valueOf(45611000L));
+        assertEquals(coun.getName(),"Myanmar");
+    }
+
+    @Test
+    void testgetYangonPopulation()
+    {
+        City city = app.getYangonPopulation().get(0);
+        assertEquals(city.getName(), "Rangoon [Yangon]");
+        assertEquals(city.getSumPopulation(), Long.valueOf(3361700L));
+
+    }
+    @Test
+    void testgetPatheinPopulation()
+    {
+        City city = app.getPatheinPopulation().get(0);
+        assertEquals(city.getName(), "Bassein (Pathein)");
+        assertEquals(city.getSumPopulation(), Long.valueOf(183900L));
+    }
+
+    @Test
+    void testgetLanguage(){
+        CountryLanguage language = app.getLanguage().get(0);
+        assertEquals(language.getLanguage(), "Chinese");
+        assertEquals(language.getPercentage(), "19.61%");
+        assertEquals(language.getPopulation(), Long.valueOf(1191843539L));
+    }
 }

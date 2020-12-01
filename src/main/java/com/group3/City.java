@@ -34,12 +34,19 @@ public class City {
      * Country's Sum Population
      */
     private long CountrySumPopulation;
-
-
+    /**
+     * City's Sum Population
+     */
+    private long SumPopulation;
     /**
      * City's Country
      */
     private Country CountryDetail;
+
+    public City(String name, long sumPopulation) {
+        Name = name;
+        SumPopulation = sumPopulation;
+    }
 
     public City(String cityPopulationPercent, String noCityPopulationPercent, long countrySumPopulation, Country countryDetail) {
         CityPopulationPercent = cityPopulationPercent;
@@ -127,5 +134,13 @@ public class City {
 
     public void setCountrySumPopulation(long countrySumPopulation) {
         CountrySumPopulation = countrySumPopulation;
+    }
+
+    public long getSumPopulation() {
+        return SumPopulation;
+    }
+
+    public void setSumPopulation(long sumPopulation) {
+        SumPopulation = sumPopulation;
     }
 }

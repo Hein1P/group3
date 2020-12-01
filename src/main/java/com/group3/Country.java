@@ -24,17 +24,28 @@ public class Country {
     private int Population;
 
     /**
+     * Country's Population
+     */
+    private Long SumPopulation;
+
+    /**
      * Country's Capital
      */
     private int Capital;
 
-    public Country(String name, String continent) {
+    public Country(String code, String name, String continent) {
+        Code = code;
         Name = name;
         Continent = continent;
     }
 
     public Country(String region) {
         Region = region;
+    }
+
+    public Country(Long sumPopulation, String name) {
+        SumPopulation = sumPopulation;
+        Name = name;
     }
 
     public Country(String code, String name, String continent, String region, int population, int capital) {
@@ -94,5 +105,11 @@ public class Country {
         Capital = capital;
     }
 
+    public Long getSumPopulation() {
+        return SumPopulation;
+    }
 
+    public void setSumPopulation(Long sumPopulation) {
+        SumPopulation = sumPopulation;
+    }
 }

@@ -2,13 +2,13 @@ package com.group3;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class App {
     /**
      * Connection to MySQL database.
      */
     private Connection con = null;
-
     /**
      * Connect to the MySQL database.
      */
@@ -40,7 +40,7 @@ public class App {
             }
             catch (SQLException sqle)
             {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
             }
             catch (InterruptedException ie)
@@ -92,7 +92,7 @@ public class App {
     void setCityDataFromQueryResult(ArrayList<City> cities, ResultSet rset) {
         try{
             while(rset.next()) {
-                cities.add(new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), new Country(rset.getString("country.name"), null)));
+                cities.add(new City(rset.getInt("city.ID"), rset.getString("city.Name"), rset.getInt("city.Population"), rset.getString("city.District"), new Country(null,rset.getString("country.name"), null)));
 
             }
         }catch(Exception e) {
@@ -104,7 +104,7 @@ public class App {
     void setCityInContinentDataFromQueryResult(ArrayList<City> cities, ResultSet rset) {
         try{
             while(rset.next()) {
-                cities.add(new City(rset.getString("CityPopulationPercent"),rset.getString("NoCityPopulationPercent"), rset.getLong("countrySumPopulation"),new Country(null,rset.getString("Continent"))));
+                cities.add(new City(rset.getString("CityPopulationPercent"),rset.getString("NoCityPopulationPercent"), rset.getLong("countrySumPopulation"),new Country(null,null,rset.getString("Continent"))));
             }
         }catch(Exception e) {
             System.out.println(e.getMessage());
@@ -126,13 +126,58 @@ public class App {
     void setCityInCountryDataFromQueryResult(ArrayList<City> cities, ResultSet rset) {
         try{
             while(rset.next()) {
-                cities.add(new City(rset.getString("CityPopulationPercent"),rset.getString("NoCityPopulationPercent"), rset.getLong("countrySumPopulation"),new Country(rset.getString("Name"),null)));
+                cities.add(new City(rset.getString("CityPopulationPercent"),rset.getString("NoCityPopulationPercent"), rset.getLong("countrySumPopulation"),new Country(null,rset.getString("Name"),null)));
             }
         }catch(Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get city details");
         }
     }
+    /** Setting the World data to the result */
+    void setWorldPopulationFromQueryResult(ArrayList<Country> countries, ResultSet rset) {
+        try{
+            while(rset.next()) {
+                countries.add(new Country(rset.getLong("WPopulation"), null));
+            }
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get World Population");
+        }
+    }
+    /** Setting the City data to the result */
+    void setCountryPopulationFromQueryResult(ArrayList<Country> countries, ResultSet rset) {
+        try{
+            while(rset.next()) {
+                countries.add(new Country(rset.getLong("Population"), rset.getString("Name")));
+            }
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country Population");
+        }
+    }
+    /** Setting the City data to the result */
+    void setCityPopulationFromQueryResult(ArrayList<City> cities, ResultSet rset) {
+        try{
+            while(rset.next()) {
+                cities.add(new City(rset.getString("Name"),rset.getLong("Population")));
+            }
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country Population");
+        }
+    }
+
+    void setCountryLanguage(ArrayList<CountryLanguage> languages, ResultSet rset){
+        try {
+            while (rset.next()){
+                languages.add(new CountryLanguage(rset.getString("Language"),rset.getString("Percentage"), rset.getLong("Population")));
+            }
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country Language");
+        }
+    }
+
     public void displayCountry(ArrayList<Country> countries) {
         if(countries == null){
             System.out.println("There is no data in Arraylist of countries");
@@ -151,6 +196,7 @@ public class App {
         }
         System.out.println("=======================================================================================================================================");
     }
+
     public void displayCity(ArrayList<City> cities) {
         if(cities == null){
             System.out.println("There is no data in Arraylist of cities");
@@ -168,6 +214,7 @@ public class App {
         }
         System.out.println("=======================================================================================================================================");
     }
+
     /**
      * * Get the country name by population in descenting order in the world.
      */
@@ -482,6 +529,7 @@ public class App {
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
+
     public void displayPopuOfPeopleinEachCountry(ArrayList<City> cities){
         if(cities == null){
             System.out.println("There is no data in Arraylist of cities");
@@ -499,6 +547,115 @@ public class App {
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
+
+    public ArrayList<Country> getWorldPopulation(){
+        String strSelect = "Select sum(Population) as WPopulation from country ";
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setWorldPopulationFromQueryResult(countries, getDataFromQuery(strSelect));
+        return countries;
+    }
+    public ArrayList<Country> getAsiaPopulation(){
+        String strSelect = "Select sum(Population) as Population, Continent as Name from country where country.Continent = 'Asia' ";
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryPopulationFromQueryResult(countries, getDataFromQuery(strSelect));
+        return countries;
+    }
+    public ArrayList<Country> getSeaPopulation(){
+        String strSelect = "Select sum(Population) as Population, Region as Name from country where country.Region = 'Southeast Asia' ";
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryPopulationFromQueryResult(countries, getDataFromQuery(strSelect));
+        return countries;
+    }
+    public ArrayList<Country> getMyanmarPopulation(){
+        String strSelect = "Select country.Population, Name from country where country.Code = 'MMR' ";
+        ArrayList<Country> countries = new ArrayList<Country>();
+        setCountryPopulationFromQueryResult(countries, getDataFromQuery(strSelect));
+        return countries;
+    }
+    public ArrayList<City> getYangonPopulation(){
+        String strSelect = "Select District as Name, sum(Population) as Population from city where city.District = 'Rangoon [Yangon]' ";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityPopulationFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
+    }
+    public ArrayList<City> getPatheinPopulation(){
+        String strSelect = "Select Name, Population from city where city.Name = 'Bassein (Pathein)' ";
+        ArrayList<City> cities = new ArrayList<City>();
+        setCityPopulationFromQueryResult(cities, getDataFromQuery(strSelect));
+        return cities;
+    }
+
+
+    public ArrayList<CountryLanguage> getLanguage() {
+        String[] Languages = {"Chinese", "English", "Arabic", "Hindi", "Spanish"};
+        ArrayList<CountryLanguage> countryLanguages = new ArrayList<CountryLanguage>();
+        for (String Lang : Languages) {
+            String strSelect = "SELECT concat(round((SUM(country.Population / 100 * countrylanguage.Percentage) / (Select SUM(country.Population) from country) * 100),2),'%') as Percentage, countrylanguage.Language, SUM(country.Population / 100 * countrylanguage.Percentage) as Population FROM country, countrylanguage WHERE country.Code = countrylanguage.CountryCode AND countrylanguage.Language = '" + Lang + "' Order by Population DESC" ;
+            setCountryLanguage(countryLanguages, getDataFromQuery(strSelect));
+
+        }
+        return countryLanguages;
+    }
+
+    public void displayLanguage(ArrayList<CountryLanguage> languages){
+        if(languages == null){
+            System.out.println("There is no data in Arraylist of cities");
+            return;
+        }
+        System.out.println("=======================================================================================================================================");
+        System.out.println(String.format("%-20s %-20s %-20s %-20s","No", "Language", "Percentage", "Population"));
+        //Loop all the City get from cities list
+        for (CountryLanguage lang : languages) {
+            if (lang == null)
+                continue;
+            int i = languages.indexOf(lang) + 1;
+            String lang_string = String.format("%-20s %-20s %-20s %-20s", i, lang.getLanguage(), lang.getPercentage(), lang.getPopulation());
+            System.out.println(lang_string);
+        }
+        System.out.println("=======================================================================================================================================");
+    }
+
+
+    public void displayWorldPopulation(ArrayList<Country> countries){
+        if(countries == null){
+            System.out.println("There is no data in Arraylist of countries");
+            return;
+        }
+        for (Country Country : countries) {
+            if (Country == null)
+                continue;
+
+            System.out.println("The Population of World is => " + Country.getSumPopulation());
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        }
+    }
+    public void displayCountryPopulation(ArrayList<Country> countries){
+        if(countries == null){
+            System.out.println("There is no data in Arraylist of countries");
+            return;
+        }
+        for (Country Country : countries) {
+            if (Country == null)
+                continue;
+
+            System.out.println("The Population of " + Country.getName() + " is  => " + Country.getSumPopulation());
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        }
+    }
+    public void displayCityPopulation(ArrayList<City> cities){
+        if(cities == null){
+            System.out.println("There is no data in Arraylist of cities");
+            return;
+        }
+        for (City city : cities) {
+            if (city == null)
+                continue;
+
+            System.out.println("The Population of " + city.getName() + " is => " + city.getSumPopulation());
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        }
+    }
+
     public static void main(String[] args) {
         // Create new Application
         App a = new App();
@@ -659,6 +816,27 @@ public class App {
         System.out.println("The population of people, people living in cities, and people not living in cities in each country.");
         a.displayPopuOfPeopleinEachCountry(sumpopuineachcountry);
 
+        ArrayList<Country> worldpopulation = a.getWorldPopulation();
+        a.displayWorldPopulation(worldpopulation);
+
+        ArrayList<Country> asiapopulation = a.getAsiaPopulation();
+        a.displayCountryPopulation(asiapopulation);
+
+        ArrayList<Country> seapopulation = a.getSeaPopulation();
+        a.displayCountryPopulation(seapopulation);
+
+        ArrayList<Country> myanmarpopulation = a.getMyanmarPopulation();
+        a.displayCountryPopulation(myanmarpopulation);
+
+
+        ArrayList<City> Yangonpopulation = a.getYangonPopulation();
+        a.displayCityPopulation(Yangonpopulation);
+
+        ArrayList<City> Patheinpopulation = a.getPatheinPopulation();
+        a.displayCityPopulation(Patheinpopulation);
+
+        ArrayList<CountryLanguage> languages = a.getLanguage();
+        a.displayLanguage(languages);
         System.out.println("HeinThu");
         // Disconnect from database
         a.disconnect();
