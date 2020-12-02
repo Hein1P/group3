@@ -3,6 +3,7 @@ package com.group3;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class App {
     /**
@@ -590,7 +591,7 @@ public class App {
         String[] Languages = {"Chinese", "English", "Arabic", "Hindi", "Spanish"};
         ArrayList<CountryLanguage> countryLanguages = new ArrayList<CountryLanguage>();
         for (String Lang : Languages) {
-            String strSelect = "SELECT concat(round((SUM(country.Population / 100 * countrylanguage.Percentage) / (Select SUM(country.Population) from country) * 100),2),'%') as Percentage, countrylanguage.Language, SUM(country.Population / 100 * countrylanguage.Percentage) as Population FROM country, countrylanguage WHERE country.Code = countrylanguage.CountryCode AND countrylanguage.Language = '" + Lang + "' Order by Population DESC" ;
+            String strSelect = "SELECT concat(round((SUM(country.Population / 100 * countrylanguage.Percentage) / (Select SUM(country.Population) from country) * 100),2),'%') as Percentage, countrylanguage.Language, SUM(country.Population / 100 * countrylanguage.Percentage) as Population FROM country, countrylanguage WHERE country.Code = countrylanguage.CountryCode AND countrylanguage.Language = '" + Lang + "'" ;
             setCountryLanguage(countryLanguages, getDataFromQuery(strSelect));
 
         }
@@ -605,6 +606,9 @@ public class App {
         System.out.println("=======================================================================================================================================");
         System.out.println(String.format("%-20s %-20s %-20s %-20s","No", "Language", "Percentage", "Population"));
         //Loop all the City get from cities list
+        Collections.sort(languages, (lan1, lan2) -> {
+            return (int) (lan2.getPopulation() - lan1.getPopulation());
+        });
         for (CountryLanguage lang : languages) {
             if (lang == null)
                 continue;
@@ -836,6 +840,7 @@ public class App {
         a.displayCityPopulation(Patheinpopulation);
 
         ArrayList<CountryLanguage> languages = a.getLanguage();
+        System.out.println("People Who Speak Languages including Percentage Of The World");
         a.displayLanguage(languages);
         System.out.println("HeinThu");
         // Disconnect from database
