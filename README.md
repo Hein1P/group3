@@ -8,7 +8,8 @@
 [![Built by Group 3](https://img.shields.io/badge/Built%20By-Group3-blueviolet)](https://github.com/Hein1P)
 [![codecov](https://codecov.io/gh/Hein1P/group3/branch/master/graph/badge.svg?token=SG0X1U6UZE)](https://codecov.io/gh/Hein1P/group3)
 
-                              | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable |
+                             
+|                              | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable |
 |------------------------------|---------------|:-------------:|---------------|---------------|-------------------|
 | Hein Thu Aung (40478652)     | 0.25          | 0.25          | 0.25          | 0.25          | 0.25              |
 | Aye Myat Eaindray (40478655) | 0.25          | 0.25          | 0.25          | 0.25          | 0.25              |
