@@ -832,7 +832,6 @@ public class App {
         ArrayList<Country> myanmarpopulation = a.getMyanmarPopulation();
         a.displayCountryPopulation(myanmarpopulation);
 
-
         ArrayList<City> Yangonpopulation = a.getYangonPopulation();
         a.displayCityPopulation(Yangonpopulation);
 
