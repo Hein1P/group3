@@ -7,6 +7,10 @@
 [![Contributors](https://img.shields.io/badge/Contributors-4-yellowgreen)](https://github.com/Hein1P)
 [![Built by Group 3](https://img.shields.io/badge/Built%20By-Group3-blueviolet)](https://github.com/Hein1P)
 [![codecov](https://codecov.io/gh/Hein1P/group3/branch/master/graph/badge.svg?token=SG0X1U6UZE)](https://codecov.io/gh/Hein1P/group3)
+![GitHub commit merge status](https://img.shields.io/github/commit-status/Hein1P/group3/master/367144d2927ee3480bd7e16fa1888db5685f8524)
+![GitHub issues](https://img.shields.io/github/issues-raw/Hein1P/group3?logoColor=red&style=plastic)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/Hein1P/group3?logoColor=green&style=plastic)
+
 
                              
 |                              | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable |
